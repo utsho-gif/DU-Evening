@@ -14,6 +14,7 @@ const NoticePage = lazy(() => import('./modules/pages/Notice/index'));
 const ForgotPasswordPage = lazy(
   () => import('./modules/pages/forgetPassword/index')
 );
+const FAQPage = lazy(() => import('./modules/pages/faq/index'));
 // const ResultPage = lazy(() => import('./modules/pages/result/index'));
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                   path="/result"
                   element={<ForgotPasswordPage result={true} />}
                 />
+                <Route path="/faq" element={<FAQPage />} />
               </Routes>
             </Suspense>
           </Router>

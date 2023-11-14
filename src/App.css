@@ -54,6 +54,18 @@ body {
   border-radius: 7px;
 }
 
+.du-name {
+  font-weight: 700;
+  color: #474489;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+@media (max-width: 768px) {
+  .form-style {
+    width: 100%;
+  }
+}
+
 /* .active-style,
 .active-style:hover,
 .active-style:active,

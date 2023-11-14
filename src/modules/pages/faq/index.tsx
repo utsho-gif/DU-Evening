@@ -1,12 +1,12 @@
 import { Button, Table } from 'react-bootstrap';
 import { ImEye } from 'react-icons/im';
 
-export default function Notice() {
+const FAQPage = () => {
   return (
     <div className="my-4 forget-password-box">
       <div className="row">
         <div className="d-flex align-items-center justify-content-center">
-          <h1 className="forget-password-font">Notice</h1>
+          <h1 className="forget-password-font">INFO</h1>
         </div>
       </div>
       <div className="row">
@@ -48,4 +48,6 @@ export default function Notice() {
       </div>
     </div>
   );
-}
+};
+
+export default FAQPage;

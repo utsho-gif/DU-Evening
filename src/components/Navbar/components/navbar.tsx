@@ -1,10 +1,10 @@
 import Nav from 'react-bootstrap/Nav';
-import { Link } from 'react-router-dom';
 import { BiLogIn } from 'react-icons/bi';
-import { HiOutlineDocumentText } from 'react-icons/hi';
 import { BsKey } from 'react-icons/bs';
-import { PiStudentDuotone } from 'react-icons/pi';
 import { FaQuestionCircle } from 'react-icons/fa';
+import { HiOutlineDocumentText } from 'react-icons/hi';
+import { PiStudentDuotone } from 'react-icons/pi';
+import { Link } from 'react-router-dom';
 
 function NavItems() {
   return (
