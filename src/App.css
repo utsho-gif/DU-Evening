@@ -1,0 +1,105 @@
+html,
+body {
+  height: 100vh !important;
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; */
+}
+
+.backgroundColor {
+  background-color: #654b60;
+}
+
+.main-div {
+  background-color: white;
+  border: 8px solid #2f1b72;
+}
+
+.navbar-style {
+  background-color: rgb(47, 27, 114);
+  width: 98%;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #6c4dd3 !important;
+}
+
+.nav-tabs .nav-link {
+  color: white !important;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.form-style {
+  width: 50%;
+  border: 20px solid #6c4dd373;
+  padding: 40px;
+}
+
+.forget-password-font {
+  color: #2f1b72;
+  font-size: 37px !important;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.forget-password-box {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  padding: 30px;
+  border-radius: 7px;
+}
+
+/* .active-style,
+.active-style:hover,
+.active-style:active,
+.active-style:focus {
+  background-color: #6c4dd3 !important;
+  color: white;
+} */
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
