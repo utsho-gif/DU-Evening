@@ -1,10 +1,10 @@
 import Nav from 'react-bootstrap/Nav';
+import { Link } from 'react-router-dom';
 import { BiLogIn } from 'react-icons/bi';
-import { BsKey } from 'react-icons/bs';
+import { BsKey, BsPersonAdd } from 'react-icons/bs';
 import { FaQuestionCircle } from 'react-icons/fa';
 import { HiOutlineDocumentText } from 'react-icons/hi';
 import { PiStudentDuotone } from 'react-icons/pi';
-import { Link } from 'react-router-dom';
 
 function NavItems() {
   return (
@@ -24,6 +24,16 @@ function NavItems() {
               className="d-flex align-items-center justify-content-center"
             >
               <BiLogIn /> &nbsp; Login
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link
+              as={Link}
+              to="/sign_up"
+              eventKey="/sign_up"
+              className="d-flex align-items-center justify-content-center"
+            >
+              <BsPersonAdd /> &nbsp; Sign Up
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>

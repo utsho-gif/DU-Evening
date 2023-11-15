@@ -9,10 +9,11 @@ import {
 } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
-const LoginPage = lazy(() => import('./modules/pages/loginPage/index'));
+const LoginPage = lazy(() => import('./modules/pages/auth/loginPage/index'));
+const SignUpPage = lazy(() => import('./modules/pages/auth/signup/index'));
 const NoticePage = lazy(() => import('./modules/pages/Notice/index'));
 const ForgotPasswordPage = lazy(
-  () => import('./modules/pages/forgetPassword/index')
+  () => import('./modules/pages/auth/forgetPassword/index')
 );
 const FAQPage = lazy(() => import('./modules/pages/faq/index'));
 // const ResultPage = lazy(() => import('./modules/pages/result/index'));
@@ -28,6 +29,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Navigate to="/login" />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/sign_up" element={<SignUpPage />} />
                 <Route path="/notice" element={<NoticePage />} />
                 <Route
                   path="/forgot_password"
