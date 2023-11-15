@@ -8,6 +8,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 const LoginPage = lazy(() => import('./modules/pages/auth/loginPage/index'));
 const SignUpPage = lazy(() => import('./modules/pages/auth/signup/index'));
@@ -44,6 +45,7 @@ function App() {
             </Suspense>
           </Router>
         </div>
+        <Footer />
       </div>
     </>
   );

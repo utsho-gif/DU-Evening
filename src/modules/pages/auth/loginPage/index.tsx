@@ -11,6 +11,12 @@ const LoginPage = () => {
         <div className="d-flex align-items-center justify-content-center">
           <Form className="form-style">
             <Form.Group className="mb-3 col-lg-12" controlId="department">
+              <Form.Label>Faculty</Form.Label>
+              <Form.Select>
+                <option>Select Your Faculty</option>
+              </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3 col-lg-12" controlId="department">
               <Form.Label>Department</Form.Label>
               <Form.Select>
                 <option>Select Your Department</option>
@@ -31,7 +37,7 @@ const LoginPage = () => {
               <Form.Control type="password" placeholder="Enter your password" />
             </Form.Group>
             <div className="d-flex align-items-center justify-content-end">
-              <Button variant="primary" type="submit" className="fw-semibold">
+              <Button type="submit" className="button-style fw-semibold">
                 Login <IoKeyOutline />
               </Button>
             </div>

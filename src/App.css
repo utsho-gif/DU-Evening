@@ -60,6 +60,17 @@ body {
   font-family: 'Times New Roman', Times, serif;
 }
 
+.footer-style {
+  background-color: #2f1b72;
+  color: white;
+  font-size: small;
+}
+
+.button-style {
+  background-color: #2f1b72 !important;
+  border: none !important;
+}
+
 @media (max-width: 768px) {
   .form-style {
     width: 100%;

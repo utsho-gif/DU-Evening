@@ -55,7 +55,7 @@ const ForgetPassword: React.FC<IForgetPassword> = ({ result }) => {
                 </Form.Select>
               </Form.Group>
             )}
-            <Button variant="primary" type="submit" className="w-100">
+            <Button type="submit" className="button-style w-100">
               Submit
             </Button>
           </Form>
