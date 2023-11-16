@@ -1,6 +1,12 @@
 import { Table } from 'react-bootstrap';
+import { IFirstInfo } from '..';
 
-const SecondStep = () => {
+interface ISecondInfo {
+  firstInfo: IFirstInfo;
+}
+
+const SecondStep: React.FC<ISecondInfo> = ({ firstInfo }) => {
+  console.log(firstInfo);
   return (
     <div className="my-5 container">
       <div className="row">
@@ -10,25 +16,25 @@ const SecondStep = () => {
               <td>
                 <h6 className="fw-bold">Department</h6>
               </td>
-              <td>Otto</td>
+              <td>{firstInfo?.department}</td>
             </tr>
             <tr>
               <td>
                 <h6 className="fw-bold">Registration No.</h6>
               </td>
-              <td>Otto</td>
+              <td>{firstInfo?.regno}</td>
             </tr>
             <tr>
               <td>
                 <h6 className="fw-bold">Program Name</h6>
               </td>
-              <td>Thornton</td>
+              <td>{firstInfo?.program}</td>
             </tr>
             <tr>
               <td>
                 <h6 className="fw-bold">Session</h6>
               </td>
-              <td>Thornton</td>
+              <td>{firstInfo?.session}</td>
             </tr>
           </tbody>
         </Table>
