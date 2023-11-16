@@ -1,4 +1,8 @@
+import { Modal, Upload } from 'antd';
+import type { UploadFile, UploadProps } from 'antd/es/upload/interface';
+import { useState } from 'react';
 import { Table } from 'react-bootstrap';
+import { CiCirclePlus } from 'react-icons/ci';
 import { IFirstInfo } from '..';
 
 interface ISecondInfo {
@@ -6,7 +10,21 @@ interface ISecondInfo {
 }
 
 const SecondStep: React.FC<ISecondInfo> = ({ firstInfo }) => {
-  console.log(firstInfo);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+
+  const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
+    setFileList(newFileList);
+
+  const uploadButton = (
+    <div>
+      <CiCirclePlus />
+      <div style={{ marginTop: 8 }}>Upload</div>
+    </div>
+  );
+
+  const handleCancel = () => setPreviewOpen(false);
+
   return (
     <div className="my-5 container">
       <div className="row">
@@ -39,22 +57,18 @@ const SecondStep: React.FC<ISecondInfo> = ({ firstInfo }) => {
           </tbody>
         </Table>
       </div>
-      <div className="row d-flex align-items-center justify-content-center">
-        <div className="col-lg-4">
-          <img
-            className="img-fluid"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL_JlCFnIGX5omgjEjgV9F3sBRq14eTERK9w&usqp=CAU"
-            alt=""
-          />
-        </div>
-        <div className="col-lg-4">
-          <input
-            type="file"
-            name="profileImage"
-            className="form-control"
-            accept="image/*"
-          />
-        </div>
+      <div className="row">
+        <Upload
+          action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+          listType="picture-circle"
+          fileList={fileList}
+          onChange={handleChange}
+        >
+          {fileList.length >= 1 ? null : uploadButton}
+        </Upload>
+        <Modal open={previewOpen} footer={null} onCancel={handleCancel}>
+          <img alt="example" style={{ width: '100%' }} />
+        </Modal>
       </div>
     </div>
   );
