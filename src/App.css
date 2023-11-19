@@ -71,6 +71,26 @@ body {
   border: none !important;
 }
 
+.ant-upload-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ant-upload {
+  width: 200px !important;
+  height: 200px !important;
+}
+
+.ant-upload-list-item-container {
+  width: 200px !important;
+  height: 200px !important;
+}
+
+.ant-upload-list-item-actions a {
+  display: none !important;
+}
+
 @media (max-width: 768px) {
   .form-style {
     width: 100%;

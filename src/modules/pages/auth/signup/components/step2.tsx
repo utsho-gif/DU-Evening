@@ -1,7 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Modal, Upload } from 'antd';
 import type { UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { useState } from 'react';
-import { Table } from 'react-bootstrap';
+import { Button, Form, Table } from 'react-bootstrap';
 import { CiCirclePlus } from 'react-icons/ci';
 import { IFirstInfo } from '..';
 
@@ -10,7 +11,6 @@ interface ISecondInfo {
 }
 
 const SecondStep: React.FC<ISecondInfo> = ({ firstInfo }) => {
-  const [previewOpen, setPreviewOpen] = useState(false);
   const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
@@ -18,12 +18,10 @@ const SecondStep: React.FC<ISecondInfo> = ({ firstInfo }) => {
 
   const uploadButton = (
     <div>
-      <CiCirclePlus />
+      <CiCirclePlus style={{ fontSize: '25px' }} />
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
-
-  const handleCancel = () => setPreviewOpen(false);
 
   return (
     <div className="my-5 container">
@@ -57,18 +55,37 @@ const SecondStep: React.FC<ISecondInfo> = ({ firstInfo }) => {
           </tbody>
         </Table>
       </div>
-      <div className="row">
+      <div className="row col-lg-12 d-flex align-items-center justify-content-center">
         <Upload
-          action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+          accept="image/*"
           listType="picture-circle"
           fileList={fileList}
           onChange={handleChange}
         >
           {fileList.length >= 1 ? null : uploadButton}
         </Upload>
-        <Modal open={previewOpen} footer={null} onCancel={handleCancel}>
-          <img alt="example" style={{ width: '100%' }} />
-        </Modal>
+      </div>
+      <div className="row">
+        <div className="d-flex align-items-center justify-content-center">
+          <Form style={{ width: '50%' }}>
+            <Form.Group className="mb-3 col-lg-12" controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control type="password" placeholder="Enter password" />
+            </Form.Group>
+            <Form.Group className="mb-3 col-lg-12" controlId="confirmPassword">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter confirm password"
+              />
+            </Form.Group>
+            <div className="d-flex align-items-center justify-content-center">
+              <Button type="submit" className="button-style fw-semibold w-100">
+                Submit
+              </Button>
+            </div>
+          </Form>
+        </div>
       </div>
     </div>
   );

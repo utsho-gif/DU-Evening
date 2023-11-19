@@ -23,6 +23,7 @@ const FirstStep: React.FC<IFirstStep> = ({
     session: yup.string().required('Session is required'),
     program: yup.string().required('Program is required'),
   });
+
   const {
     register,
     formState: { errors },
