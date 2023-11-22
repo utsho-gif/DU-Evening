@@ -1,8 +1,9 @@
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { FaRegArrowAltCircleRight } from 'react-icons/fa';
+import * as yup from 'yup';
+
 import { IFirstInfo } from '..';
 
 interface IFirstStep {
@@ -16,7 +17,7 @@ const FirstStep: React.FC<IFirstStep> = ({
   setFirstInfo,
   firstInfo,
 }) => {
-  const LoginSchema = yup.object().shape({
+  const SignUpFirstSchema = yup.object().shape({
     faculty: yup.string().required('Faculty is required'),
     department: yup.string().required('Department is required'),
     regno: yup.string().required('Registration number is required'),
@@ -28,11 +29,10 @@ const FirstStep: React.FC<IFirstStep> = ({
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm({ resolver: yupResolver(LoginSchema) });
+  } = useForm({ resolver: yupResolver(SignUpFirstSchema) });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
-  const onSubmit = (data: any, e: any) => {
-    e.preventDefault();
+  const onSubmit = (data: any) => {
     setFirstInfo({
       ...firstInfo,
       faculty: data.faculty,
@@ -50,7 +50,9 @@ const FirstStep: React.FC<IFirstStep> = ({
       <div className="d-flex align-items-center justify-content-center">
         <Form className="form-style" onSubmit={handleSubmit(onSubmit)}>
           <Form.Group className="mb-3 col-lg-12" controlId="faculty">
-            <Form.Label>Faculty</Form.Label>
+            <Form.Label>
+              Faculty <span className="text-danger">*</span>
+            </Form.Label>
             <Form.Select {...register('faculty')}>
               <option value="">Select Your Faculty</option>
               <option value="1">1</option>
@@ -64,7 +66,9 @@ const FirstStep: React.FC<IFirstStep> = ({
             </Form.Label>
           </Form.Group>
           <Form.Group className="mb-3 col-lg-12" controlId="department">
-            <Form.Label>Department</Form.Label>
+            <Form.Label>
+              Department <span className="text-danger">*</span>
+            </Form.Label>
             <Form.Select {...register('department')}>
               <option value="">Select Your Department</option>
               <option value="1">1</option>
@@ -79,7 +83,9 @@ const FirstStep: React.FC<IFirstStep> = ({
           </Form.Group>
 
           <Form.Group className="mb-3 col-lg-12" controlId="regno">
-            <Form.Label>Registration No.</Form.Label>
+            <Form.Label>
+              Registration No. <span className="text-danger">*</span>
+            </Form.Label>
             <Form.Control
               type="text"
               placeholder="Registration No"
@@ -92,7 +98,9 @@ const FirstStep: React.FC<IFirstStep> = ({
             </Form.Label>
           </Form.Group>
           <Form.Group className="mb-3 col-lg-12" controlId="session">
-            <Form.Label>Session</Form.Label>
+            <Form.Label>
+              Session <span className="text-danger">*</span>
+            </Form.Label>
             <Form.Select {...register('session')}>
               <option value="">Select Your Session</option>
               <option value="1">1</option>
@@ -106,7 +114,9 @@ const FirstStep: React.FC<IFirstStep> = ({
             </Form.Label>
           </Form.Group>
           <Form.Group className="mb-3 col-lg-12" controlId="program">
-            <Form.Label>Program</Form.Label>
+            <Form.Label>
+              Program <span className="text-danger">*</span>
+            </Form.Label>
             <Form.Select {...register('program')}>
               <option value="">Select Your Program</option>
               <option value="1">1</option>

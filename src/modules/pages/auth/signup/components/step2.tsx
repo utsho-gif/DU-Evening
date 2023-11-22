@@ -1,17 +1,49 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Modal, Upload } from 'antd';
-import type { UploadFile, UploadProps } from 'antd/es/upload/interface';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Upload } from 'antd';
+import type { UploadProps } from 'antd/es/upload/interface';
 import { useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
 import { CiCirclePlus } from 'react-icons/ci';
+import * as yup from 'yup';
+
 import { IFirstInfo } from '..';
 
 interface ISecondInfo {
   firstInfo: IFirstInfo;
+  setFirstInfo: React.Dispatch<React.SetStateAction<IFirstInfo>>;
 }
 
-const SecondStep: React.FC<ISecondInfo> = ({ firstInfo }) => {
-  const [fileList, setFileList] = useState<UploadFile[]>([]);
+const SecondStep: React.FC<ISecondInfo> = ({ firstInfo, setFirstInfo }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [fileList, setFileList] = useState<any>([]);
+  const SignUpSecondSchema = yup.object().shape({
+    password: yup
+      .string()
+      .min(8, 'Password must be at least 8 characters')
+      .required('Password is required'),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('password')], 'Passwords must match')
+      .required('Confirm Password is required')
+      .nullable(),
+  });
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({ resolver: yupResolver(SignUpSecondSchema) });
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onSubmit = (data: any) => {
+    setFirstInfo({
+      ...firstInfo,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+    });
+    alert(fileList[0]);
+  };
 
   const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
     setFileList(newFileList);
@@ -67,17 +99,38 @@ const SecondStep: React.FC<ISecondInfo> = ({ firstInfo }) => {
       </div>
       <div className="row">
         <div className="d-flex align-items-center justify-content-center">
-          <Form style={{ width: '50%' }}>
+          <Form style={{ width: '50%' }} onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="mb-3 col-lg-12" controlId="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Enter password" />
+              <Form.Label>
+                Password <span className="text-danger">*</span>
+              </Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter password"
+                {...register('password')}
+              />
+              <Form.Label>
+                {errors.password && (
+                  <p className="text-danger">{errors.password.message}</p>
+                )}
+              </Form.Label>
             </Form.Group>
             <Form.Group className="mb-3 col-lg-12" controlId="confirmPassword">
-              <Form.Label>Confirm Password</Form.Label>
+              <Form.Label>
+                Confirm Password <span className="text-danger">*</span>
+              </Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Enter confirm password"
+                {...register('confirmPassword')}
               />
+              <Form.Label>
+                {errors.confirmPassword && (
+                  <p className="text-danger">
+                    {errors.confirmPassword.message}
+                  </p>
+                )}
+              </Form.Label>
             </Form.Group>
             <div className="d-flex align-items-center justify-content-center">
               <Button type="submit" className="button-style fw-semibold w-100">

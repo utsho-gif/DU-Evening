@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import PageTitle from '../../../../components/PageTitle';
 import FirstStep from './components/step1';
 import SecondStep from './components/step2';
@@ -9,6 +10,8 @@ export interface IFirstInfo {
   regno: string;
   session: string;
   program: string;
+  password?: string;
+  confirmPassword?: string;
 }
 
 const SignUp: React.FC<IFirstInfo> = () => {
@@ -18,6 +21,8 @@ const SignUp: React.FC<IFirstInfo> = () => {
     regno: '',
     session: '',
     program: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const [step, setStep] = useState<number>(1);
@@ -36,7 +41,9 @@ const SignUp: React.FC<IFirstInfo> = () => {
           firstInfo={firstInfo}
         />
       )}
-      {step === 2 && <SecondStep firstInfo={firstInfo} />}
+      {step === 2 && (
+        <SecondStep firstInfo={firstInfo} setFirstInfo={setFirstInfo} />
+      )}
     </>
   );
 };
