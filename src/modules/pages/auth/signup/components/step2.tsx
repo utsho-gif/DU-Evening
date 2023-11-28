@@ -8,6 +8,7 @@ import { CiCirclePlus } from 'react-icons/ci';
 import * as yup from 'yup';
 
 import { IFirstInfo } from '..';
+import { PostData } from '../../../../../config/reactQuery';
 
 interface ISecondInfo {
   firstInfo: IFirstInfo;
@@ -35,16 +36,28 @@ const SecondStep: React.FC<ISecondInfo> = ({ firstInfo, setFirstInfo }) => {
     handleSubmit,
   } = useForm({ resolver: yupResolver(SignUpSecondSchema) });
 
+  const { mutate: userData, isLoading } = PostData({
+    url: '/user_create',
+    key: 'userCreate',
+    navigateOnSuccess: '/login',
+  });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     setFirstInfo({
       ...firstInfo,
       password: data.password,
       confirmPassword: data.confirmPassword,
     });
-    alert(fileList[0]);
+    const formData = new FormData();
+    formData.append('faculty', firstInfo?.faculty);
+    formData.append('department', firstInfo?.department);
+    formData.append('regno', firstInfo?.regno);
+    formData.append('session', firstInfo?.session);
+    formData.append('program', firstInfo?.program);
+    formData.append('password', data?.password);
+    formData.append('confirmPassword', data?.confirmPassword);
+    await userData(formData);
   };
-
   const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
     setFileList(newFileList);
 
@@ -134,7 +147,7 @@ const SecondStep: React.FC<ISecondInfo> = ({ firstInfo, setFirstInfo }) => {
             </Form.Group>
             <div className="d-flex align-items-center justify-content-center">
               <Button type="submit" className="button-style fw-semibold w-100">
-                Submit
+                {isLoading ? 'Loading' : 'Submit'}
               </Button>
             </div>
           </Form>

@@ -14,7 +14,7 @@ const ForgetPassword: React.FC<IForgetPassword> = ({ result }) => {
     regno: yup.string().required('Registration number is required'),
     department: yup.string().required('Department is required'),
     session: yup.string().required('Session is required'),
-    exam: yup.string().required('Exam name is required'),
+    exam: result ? yup.string().required('Exam is required') : yup.string(),
   });
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -42,7 +42,9 @@ const ForgetPassword: React.FC<IForgetPassword> = ({ result }) => {
         <div className="row">
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="mb-3" controlId="regno">
-              <Form.Label>Registration No.</Form.Label>
+              <Form.Label>
+                Registration No. <span className="text-danger">*</span>
+              </Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter your registration number"
@@ -55,7 +57,9 @@ const ForgetPassword: React.FC<IForgetPassword> = ({ result }) => {
               </Form.Label>
             </Form.Group>
             <Form.Group className="mb-3" controlId="department">
-              <Form.Label>Department</Form.Label>
+              <Form.Label>
+                Department <span className="text-danger">*</span>
+              </Form.Label>
               <Form.Select aria-label="department" {...register('department')}>
                 <option value="">Select your department</option>
                 <option value="1">One</option>
@@ -69,7 +73,9 @@ const ForgetPassword: React.FC<IForgetPassword> = ({ result }) => {
               </Form.Label>
             </Form.Group>
             <Form.Group className="mb-3" controlId="session">
-              <Form.Label>Session</Form.Label>
+              <Form.Label>
+                Session <span className="text-danger">*</span>
+              </Form.Label>
               <Form.Select aria-label="session" {...register('session')}>
                 <option value="">Select your session</option>
                 <option value="1">One</option>
@@ -84,7 +90,9 @@ const ForgetPassword: React.FC<IForgetPassword> = ({ result }) => {
             </Form.Group>
             {result && (
               <Form.Group className="mb-3" controlId="exam">
-                <Form.Label>Exam Name</Form.Label>
+                <Form.Label>
+                  Exam Name <span className="text-danger">*</span>
+                </Form.Label>
                 <Form.Select aria-label="exam" {...register('exam')}>
                   <option value="">Select your exam</option>
                   <option value="1">One</option>

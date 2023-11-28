@@ -30,7 +30,18 @@ function App() {
               <Routes>
                 <Route path="/" element={<Navigate to="/login" />} />
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/sign_up" element={<SignUpPage />} />
+                <Route
+                  path="/sign_up"
+                  element={
+                    <SignUpPage
+                      faculty={''}
+                      department={''}
+                      regno={''}
+                      session={''}
+                      program={''}
+                    />
+                  }
+                />
                 <Route path="/notice" element={<NoticePage />} />
                 <Route
                   path="/forgot_password"

@@ -10,7 +10,7 @@ export interface IFirstInfo {
   regno: string;
   session: string;
   program: string;
-  password?: string;
+  password: string;
   confirmPassword?: string;
 }
 
