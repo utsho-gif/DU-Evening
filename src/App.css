@@ -39,7 +39,7 @@ body {
 
 .form-style {
   width: 50%;
-  border: 20px solid #6c4dd373;
+  border: 20px solid #2f1b72;
   padding: 40px;
 }
 
@@ -91,6 +91,10 @@ body {
 
 .ant-upload-list-item-actions a {
   display: none !important;
+}
+
+.main-loading {
+  display: block !important;
 }
 
 @media (max-width: 768px) {

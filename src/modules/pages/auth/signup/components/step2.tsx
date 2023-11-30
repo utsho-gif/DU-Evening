@@ -5,10 +5,12 @@ import { useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { CiCirclePlus } from 'react-icons/ci';
+// import { toast } from 'react-toastify';
 import * as yup from 'yup';
 
 import { IFirstInfo } from '..';
 import { PostData } from '../../../../../config/reactQuery';
+import Loading from '../../../../../components/Loading';
 
 interface ISecondInfo {
   firstInfo: IFirstInfo;
@@ -36,11 +38,14 @@ const SecondStep: React.FC<ISecondInfo> = ({ firstInfo, setFirstInfo }) => {
     handleSubmit,
   } = useForm({ resolver: yupResolver(SignUpSecondSchema) });
 
-  const { mutate: userData, isLoading } = PostData({
+  const { mutate: userData, isLoading: createUserLoading } = PostData({
     url: '/user_create',
     key: 'userCreate',
+    successType: 'Success',
+    errorType: 'Error',
     navigateOnSuccess: '/login',
   });
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = async (data: any) => {
     setFirstInfo({
@@ -58,6 +63,7 @@ const SecondStep: React.FC<ISecondInfo> = ({ firstInfo, setFirstInfo }) => {
     formData.append('confirmPassword', data?.confirmPassword);
     await userData(formData);
   };
+
   const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
     setFileList(newFileList);
 
@@ -147,7 +153,7 @@ const SecondStep: React.FC<ISecondInfo> = ({ firstInfo, setFirstInfo }) => {
             </Form.Group>
             <div className="d-flex align-items-center justify-content-center">
               <Button type="submit" className="button-style fw-semibold w-100">
-                {isLoading ? 'Loading' : 'Submit'}
+                {createUserLoading ? <Loading text="Loading..." /> : 'Submit'}
               </Button>
             </div>
           </Form>
