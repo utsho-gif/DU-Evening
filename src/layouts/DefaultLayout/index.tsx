@@ -1,4 +1,6 @@
 import React from 'react';
+import Footer from '../../components/Footer';
+import Navbar from '../../components/Navbar';
 
 interface IDefaultLayout {
   children: React.ReactNode;
@@ -7,7 +9,11 @@ interface IDefaultLayout {
 const DefaultLayout: React.FC<IDefaultLayout> = ({ children }) => {
   return (
     <div className="backgroundColor">
-      <div className="container main-div">{children}</div>
+      <div className="container main-div">
+        <Navbar />
+        {children}
+      </div>
+      <Footer />
     </div>
   );
 };

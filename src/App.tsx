@@ -7,8 +7,6 @@ import {
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import './App.css';
-import Footer from './components/Footer';
-import Navbar from './components/Navbar';
 import Preloader from './components/Preloaders/Preloader';
 import Dashboard from './modules/pages/dashboard';
 import DefaultLayout from './layouts/DefaultLayout';
@@ -46,7 +44,6 @@ function App() {
         theme="colored"
       />
       <Router>
-        <Navbar />
         <Suspense fallback={<Preloader />}>
           <Routes>
             <Route
@@ -57,24 +54,44 @@ function App() {
                 </DefaultLayout>
               }
             />
-            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/login"
+              element={
+                <DefaultLayout>
+                  <LoginPage />
+                </DefaultLayout>
+              }
+            />
             <Route
               path="/sign_up"
               element={
-                <SignUpPage
-                  faculty={''}
-                  department={''}
-                  regno={''}
-                  session={''}
-                  program={''}
-                  password={''}
-                />
+                <DefaultLayout>
+                  <SignUpPage
+                    faculty={''}
+                    department={''}
+                    regno={''}
+                    session={''}
+                    program={''}
+                    password={''}
+                  />
+                </DefaultLayout>
               }
             />
-            <Route path="/notice" element={<NoticePage />} />
+            <Route
+              path="/notice"
+              element={
+                <DefaultLayout>
+                  <NoticePage />
+                </DefaultLayout>
+              }
+            />
             <Route
               path="/forgot_password"
-              element={<ForgotPasswordPage result={false} />}
+              element={
+                <DefaultLayout>
+                  <ForgotPasswordPage result={false} />
+                </DefaultLayout>
+              }
             />
             <Route
               path="/result"
@@ -85,7 +102,6 @@ function App() {
           </Routes>
         </Suspense>
       </Router>
-      <Footer />
     </>
   );
 }
