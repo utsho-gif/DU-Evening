@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import './App.css';
 import Preloader from './components/Preloaders/Preloader';
 import DefaultLayout from './layouts/DefaultLayout';
+import DashboardLayout from './layouts/DashboardLayout';
 const LoginPage = lazy(() => import('./modules/pages/auth/loginPage/index'));
 const SignUpPage = lazy(() => import('./modules/pages/auth/signup/index'));
 const NoticePage = lazy(() => import('./modules/pages/Notice/index'));
@@ -93,9 +94,9 @@ function App() {
             <Route
               path="/faq"
               element={
-                <DefaultLayout>
+                <DashboardLayout>
                   <FAQPage />
-                </DefaultLayout>
+                </DashboardLayout>
               }
             />
           </Routes>
