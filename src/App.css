@@ -97,6 +97,29 @@ body {
   display: block !important;
 }
 
+.wrapper {
+  position: relative;
+  top: 0;
+  height: 100vh;
+}
+
+.main-panel {
+  background: rgba(203, 203, 210, 0.15);
+  position: relative;
+  float: right;
+  width: calc(100% - 260px);
+}
+.main-panel > .content {
+  padding: 30px 15px;
+  min-height: calc(100% - 123px);
+}
+.main-panel > .footer {
+  border-top: 1px solid #e7e7e7;
+}
+.main-panel .navbar {
+  margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
   .form-style {
     width: 100%;
