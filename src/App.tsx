@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy } from 'react';
 import {
   Navigate,
   Route,
@@ -8,7 +8,6 @@ import {
 import { ToastContainer } from 'react-toastify';
 import './App.css';
 import Preloader from './components/Preloaders/Preloader';
-import Dashboard from './modules/pages/dashboard';
 import DefaultLayout from './layouts/DefaultLayout';
 const LoginPage = lazy(() => import('./modules/pages/auth/loginPage/index'));
 const SignUpPage = lazy(() => import('./modules/pages/auth/signup/index'));
@@ -17,18 +16,8 @@ const ForgotPasswordPage = lazy(
   () => import('./modules/pages/auth/forgetPassword/index')
 );
 const FAQPage = lazy(() => import('./modules/pages/faq/index'));
-// const ResultPage = lazy(() => import('./modules/pages/result/index'));
 
 function App() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [currentRoute, setCurrentRoute] = useState<string>('');
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    setCurrentRoute(window.location.pathname);
-
-    return () => setCurrentRoute('');
-  }, []);
-
   return (
     <>
       <ToastContainer
@@ -95,10 +84,20 @@ function App() {
             />
             <Route
               path="/result"
-              element={<ForgotPasswordPage result={true} />}
+              element={
+                <DefaultLayout>
+                  <ForgotPasswordPage result={true} />
+                </DefaultLayout>
+              }
             />
-            <Route path="/faq" element={<FAQPage />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/faq"
+              element={
+                <DefaultLayout>
+                  <FAQPage />
+                </DefaultLayout>
+              }
+            />
           </Routes>
         </Suspense>
       </Router>

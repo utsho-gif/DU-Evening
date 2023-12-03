@@ -3,7 +3,7 @@ import Footer from '../../components/Footer';
 import Navbar from '../../components/Navbar';
 
 interface IDefaultLayout {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const DefaultLayout: React.FC<IDefaultLayout> = ({ children }) => {
