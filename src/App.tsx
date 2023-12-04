@@ -92,10 +92,18 @@ function App() {
               }
             />
             <Route
-              path="/faq"
+              path="/dashboard/faq"
               element={
                 <DashboardLayout>
                   <FAQPage />
+                </DashboardLayout>
+              }
+            />
+            <Route
+              path="/dashboard/notice"
+              element={
+                <DashboardLayout>
+                  <NoticePage />
                 </DashboardLayout>
               }
             />

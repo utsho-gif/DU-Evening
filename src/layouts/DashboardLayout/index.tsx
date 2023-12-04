@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import Sidebar from '../../components/Sidebar';
+import DashboardNav from '../../components/DashboardNav';
 
 interface IDashboardLayout {
   children: React.ReactNode;
@@ -13,7 +14,7 @@ const DashboardLayout: React.FC<IDashboardLayout> = ({ children }) => {
       <div className="wrapper">
         <Sidebar />
         <div className="main-panel" ref={mainPanel}>
-          {/* <AdminNavbar /> */}
+          <DashboardNav />
           <div className="content">{children}</div>
         </div>
       </div>
