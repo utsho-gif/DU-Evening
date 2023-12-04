@@ -6,10 +6,13 @@ import {
   Routes,
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+
 import './App.css';
 import Preloader from './components/Preloaders/Preloader';
-import DefaultLayout from './layouts/DefaultLayout';
-import DashboardLayout from './layouts/DashboardLayout';
+
+const DefaultLayout = lazy(() => import('./layouts/DefaultLayout'));
+const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
+const Dashboard = lazy(() => import('./modules/pages/auth/Dashboard/overview'));
 const LoginPage = lazy(() => import('./modules/pages/auth/loginPage/index'));
 const SignUpPage = lazy(() => import('./modules/pages/auth/signup/index'));
 const NoticePage = lazy(() => import('./modules/pages/Notice/index'));
@@ -92,18 +95,26 @@ function App() {
               }
             />
             <Route
-              path="/dashboard/faq"
+              path="/faq"
+              element={
+                <DefaultLayout>
+                  <FAQPage />
+                </DefaultLayout>
+              }
+            />
+            <Route
+              path="/dashboard/overview"
               element={
                 <DashboardLayout>
-                  <FAQPage />
+                  <Dashboard />
                 </DashboardLayout>
               }
             />
             <Route
-              path="/dashboard/notice"
+              path="/dashboard/faq"
               element={
                 <DashboardLayout>
-                  <NoticePage />
+                  <FAQPage />
                 </DashboardLayout>
               }
             />
