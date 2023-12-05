@@ -103,6 +103,14 @@ function App() {
               }
             />
             <Route
+              path="/dashboard"
+              element={
+                <DashboardLayout>
+                  <Dashboard />
+                </DashboardLayout>
+              }
+            />
+            <Route
               path="/dashboard/overview"
               element={
                 <DashboardLayout>

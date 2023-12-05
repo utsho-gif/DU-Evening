@@ -20,6 +20,23 @@ const DashboardNav = () => {
     return 'Dashboard';
   };
 
+  const mobileSidebarToggle = (e: React.MouseEvent): void => {
+    e.preventDefault();
+    document.documentElement.classList.toggle('nav-open');
+
+    const node = document.createElement('div');
+    node.id = 'bodyClick';
+    node.onclick = function () {
+      const element = this as HTMLElement;
+      if (element.parentElement) {
+        element.parentElement.removeChild(element);
+        document.documentElement.classList.toggle('nav-open');
+      }
+    };
+
+    document.body.appendChild(node);
+  };
+
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
@@ -27,14 +44,11 @@ const DashboardNav = () => {
           <Button
             variant="dark"
             className="d-lg-none btn-fill d-flex justify-content-center align-items-center rounded-circle p-2"
+            onClick={mobileSidebarToggle}
           >
             <i className="fas fa-ellipsis-v"></i>
           </Button>
-          <Navbar.Brand
-            href="#home"
-            onClick={(e) => e.preventDefault()}
-            className="mr-2"
-          >
+          <Navbar.Brand href="#home" className="mr-2">
             {getBrandText()}
           </Navbar.Brand>
         </div>
@@ -61,20 +75,11 @@ const DashboardNav = () => {
                   </div>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    Notification 1
-                  </Dropdown.Item>
+                  <Dropdown.Item href="#home">Notification 1</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Nav.Item>
-                <Nav.Link
-                  className="m-0"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                >
+                <Nav.Link className="m-0" href="#home">
                   <div className="d-flex align-items-center justify-content-center">
                     <FcSearch style={{ fontSize: '20px' }} />
                     <span className="d-lg-block">Search</span>
@@ -84,11 +89,7 @@ const DashboardNav = () => {
             </Nav>
             <Nav className="ml-auto" navbar>
               <Nav.Item>
-                <Nav.Link
-                  className="m-0"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                >
+                <Nav.Link className="m-0" href="#home">
                   <span className="no-icon">Account</span>
                 </Nav.Link>
               </Nav.Item>
@@ -105,20 +106,11 @@ const DashboardNav = () => {
                   <span className="no-icon">Dropdown</span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu aria-labelledby="navbarDropdownMenuLink">
-                  <Dropdown.Item
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    Action
-                  </Dropdown.Item>
+                  <Dropdown.Item href="#home">Action</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
               <Nav.Item>
-                <Nav.Link
-                  className="m-0"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                >
+                <Nav.Link className="m-0" href="#home">
                   <span className="no-icon">Log out</span>
                 </Nav.Link>
               </Nav.Item>

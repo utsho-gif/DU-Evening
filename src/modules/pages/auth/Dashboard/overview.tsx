@@ -15,17 +15,17 @@ const Overview = () => {
       <Container fluid>
         <Row>
           <Col lg="3" sm="6">
-            <Card className="card-stats">
+            <Card className="card-stats card-broaden1 ">
               <Card.Body>
                 <Row>
                   <Col xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <HiCircleStack className="text-warning" />
+                      <HiCircleStack className="text-warning icon-broaden" />
                     </div>
                   </Col>
                   <Col xs="7">
-                    <div className="numbers">
-                      <p className="card-category">Number</p>
+                    <div className="numbers ">
+                      <p className="stats">Number</p>
                       <Card.Title as="h4">
                         <CountUp
                           end={150}
@@ -54,17 +54,17 @@ const Overview = () => {
             </Card>
           </Col>
           <Col lg="3" sm="6">
-            <Card className="card-stats">
+            <Card className="card-stats card-broaden2">
               <Card.Body>
                 <Row>
                   <Col xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <PiShootingStarLight className="text-success" />
+                      <PiShootingStarLight className="text-success icon-broaden" />
                     </div>
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Revenue</p>
+                      <p className="stats">Revenue</p>
                       <Card.Title as="h4">
                         <CountUp
                           end={1345}
@@ -93,17 +93,17 @@ const Overview = () => {
             </Card>
           </Col>
           <Col lg="3" sm="6">
-            <Card className="card-stats">
+            <Card className="card-stats card-broaden3">
               <Card.Body>
                 <Row>
                   <Col xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <TbError404 className="text-danger" />
+                      <TbError404 className="text-danger icon-broaden" />
                     </div>
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Errors</p>
+                      <p className="stats">Errors</p>
                       <Card.Title as="h4">
                         <CountUp end={23} duration={5} redraw={true}>
                           {({ countUpRef, start }) => (
@@ -127,19 +127,20 @@ const Overview = () => {
             </Card>
           </Col>
           <Col lg="3" sm="6">
-            <Card className="card-stats">
+            <Card className="card-stats card-broaden4">
               <Card.Body>
                 <Row>
                   <Col xs="5">
                     <div className="icon-big text-center icon-warning">
-                      <TbHeartMinus className="text-info" />
+                      <TbHeartMinus className="text-info icon-broaden" />
                     </div>
                   </Col>
                   <Col xs="7">
                     <div className="numbers">
-                      <p className="card-category">Followers</p>
+                      <p className="stats">Followers</p>
                       <Card.Title as="h4">
                         <CountUp
+                          className="text-white"
                           end={45}
                           duration={5}
                           prefix="+"
