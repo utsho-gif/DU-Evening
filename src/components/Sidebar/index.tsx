@@ -9,7 +9,7 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <div className="sidebar-wrapper">
+      <div className="sidebar-wrapper" style={{ backgroundColor: '#4E4E4E' }}>
         <Nav>
           {dashboardRoutes.map((route: IDashboardRoute) => {
             if (!route?.redirect) {
@@ -18,11 +18,7 @@ const Sidebar = () => {
                   key={route?.key}
                   className={activeRoute(route.layout + route.path)}
                 >
-                  <Link
-                    className="nav-link"
-                    // activeClassName="active"
-                    to={route?.layout + route?.path}
-                  >
+                  <Link className="nav-link" to={route?.layout + route?.path}>
                     {route?.title}
                   </Link>
                 </li>
