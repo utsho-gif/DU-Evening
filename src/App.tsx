@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Suspense, lazy } from 'react';
 import {
   Navigate,
@@ -8,7 +9,9 @@ import {
 import { ToastContainer } from 'react-toastify';
 
 import './App.css';
-import Preloader from './components/Preloaders/Preloader';
+import DepartmentRoutes from './routes/department';
+import DepartmentPrivateRoutes from './private-routes/DepartmentPrivateRoute';
+// import Preloader from './components/Preloaders/Preloader';
 
 const DefaultLayout = lazy(() => import('./layouts/DefaultLayout'));
 const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
@@ -37,97 +40,114 @@ function App() {
         theme="colored"
       />
       <Router>
-        <Suspense fallback={<Preloader />}>
-          <Routes>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <DefaultLayout>
+                <Navigate to="/login" />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <DefaultLayout>
+                <LoginPage />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/sign_up"
+            element={
+              <DefaultLayout>
+                <SignUpPage
+                  faculty={''}
+                  department={''}
+                  regno={''}
+                  session={''}
+                  program={''}
+                  password={''}
+                />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/notice"
+            element={
+              <DefaultLayout>
+                <NoticePage />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/forgot_password"
+            element={
+              <DefaultLayout>
+                <ForgotPasswordPage result={false} />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/result"
+            element={
+              <DefaultLayout>
+                <ForgotPasswordPage result={true} />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/faq"
+            element={
+              <DefaultLayout>
+                <FAQPage />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <DashboardLayout>
+                <Dashboard />
+              </DashboardLayout>
+            }
+          />
+          <Route
+            path="/dashboard/overview"
+            element={
+              <DashboardLayout>
+                <Dashboard />
+              </DashboardLayout>
+            }
+          />
+          <Route
+            path="/dashboard/faq"
+            element={
+              <DashboardLayout>
+                <FAQPage />
+              </DashboardLayout>
+            }
+          />
+          {DepartmentRoutes.map((department) => (
             <Route
-              path="/"
+              path="/department"
+              key={department.id}
               element={
-                <DefaultLayout>
-                  <Navigate to="/login" />
-                </DefaultLayout>
+                <DepartmentPrivateRoutes
+                  permission={null}
+                  loginStateData={undefined}
+                  permissions={undefined}
+                />
               }
-            />
-            <Route
-              path="/login"
-              element={
-                <DefaultLayout>
-                  <LoginPage />
-                </DefaultLayout>
-              }
-            />
-            <Route
-              path="/sign_up"
-              element={
-                <DefaultLayout>
-                  <SignUpPage
-                    faculty={''}
-                    department={''}
-                    regno={''}
-                    session={''}
-                    program={''}
-                    password={''}
-                  />
-                </DefaultLayout>
-              }
-            />
-            <Route
-              path="/notice"
-              element={
-                <DefaultLayout>
-                  <NoticePage />
-                </DefaultLayout>
-              }
-            />
-            <Route
-              path="/forgot_password"
-              element={
-                <DefaultLayout>
-                  <ForgotPasswordPage result={false} />
-                </DefaultLayout>
-              }
-            />
-            <Route
-              path="/result"
-              element={
-                <DefaultLayout>
-                  <ForgotPasswordPage result={true} />
-                </DefaultLayout>
-              }
-            />
-            <Route
-              path="/faq"
-              element={
-                <DefaultLayout>
-                  <FAQPage />
-                </DefaultLayout>
-              }
-            />
-            <Route
-              path="/dashboard"
-              element={
-                <DashboardLayout>
-                  <Dashboard />
-                </DashboardLayout>
-              }
-            />
-            <Route
-              path="/dashboard/overview"
-              element={
-                <DashboardLayout>
-                  <Dashboard />
-                </DashboardLayout>
-              }
-            />
-            <Route
-              path="/dashboard/faq"
-              element={
-                <DashboardLayout>
-                  <FAQPage />
-                </DashboardLayout>
-              }
-            />
-          </Routes>
-        </Suspense>
+            >
+              <Route
+                path={department.path}
+                element={<department.component />}
+              />
+              {/* <Route path="*" element={<NotFound />} /> */}
+            </Route>
+          ))}
+        </Routes>
       </Router>
     </>
   );

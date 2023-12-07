@@ -1,6 +1,7 @@
 import { Nav } from 'react-bootstrap';
-import dashboardRoutes, { IDashboardRoute } from '../../routes';
+// import dashboardRoutes, { IDashboardRoute } from '../../routes';
 import { Link, useLocation } from 'react-router-dom';
+import DepartmentRoutes from '../../routes/department';
 
 const Sidebar = () => {
   const location = useLocation();
@@ -11,20 +12,14 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="sidebar-wrapper" style={{ backgroundColor: '#4E4E4E' }}>
         <Nav>
-          {dashboardRoutes.map((route: IDashboardRoute) => {
-            if (!route?.redirect) {
-              return (
-                <li
-                  key={route?.key}
-                  className={activeRoute(route.layout + route.path)}
-                >
-                  <Link className="nav-link" to={route?.layout + route?.path}>
-                    {route?.title}
-                  </Link>
-                </li>
-              );
-            }
-            return null;
+          {DepartmentRoutes.map((route) => {
+            return (
+              <li key={route?.id} className={activeRoute(route.path)}>
+                <Link className="nav-link" to={route?.path}>
+                  {route?.title}
+                </Link>
+              </li>
+            );
           })}
         </Nav>
       </div>

@@ -2,23 +2,22 @@ import { Button, Container, Dropdown, Nav, Navbar } from 'react-bootstrap';
 import { IoPlanetSharp } from 'react-icons/io5';
 import { FcSearch } from 'react-icons/fc';
 
-import dashboardRoutes from '../../routes';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 const DashboardNav = () => {
-  const location = useLocation();
-  const getBrandText = () => {
-    for (let i = 0; i < dashboardRoutes.length; i++) {
-      if (
-        location.pathname.indexOf(
-          dashboardRoutes[i].layout + dashboardRoutes[i].path
-        ) !== -1
-      ) {
-        return dashboardRoutes[i].title;
-      }
-    }
-    return 'Dashboard';
-  };
+  // const location = useLocation();
+  // const getBrandText = () => {
+  //   for (let i = 0; i < dashboardRoutes.length; i++) {
+  //     if (
+  //       location.pathname.indexOf(
+  //         dashboardRoutes[i].layout + dashboardRoutes[i].path
+  //       ) !== -1
+  //     ) {
+  //       return dashboardRoutes[i].title;
+  //     }
+  //   }
+  //   return 'Dashboard';
+  // };
 
   const mobileSidebarToggle = (e: React.MouseEvent): void => {
     e.preventDefault();
@@ -49,7 +48,8 @@ const DashboardNav = () => {
             <i className="fas fa-ellipsis-v"></i>
           </Button>
           <Navbar.Brand href="#home" className="mr-2">
-            {getBrandText()}
+            {/* {getBrandText()} */}
+            Dashboard
           </Navbar.Brand>
         </div>
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="mr-2">
