@@ -1,7 +1,8 @@
 import { Nav } from 'react-bootstrap';
-// import dashboardRoutes, { IDashboardRoute } from '../../routes';
 import { Link, useLocation } from 'react-router-dom';
+
 import DepartmentRoutes from '../../routes/department';
+import React from 'react';
 
 const Sidebar = () => {
   const location = useLocation();
@@ -16,7 +17,13 @@ const Sidebar = () => {
             return (
               <li key={route?.id} className={activeRoute(route.path)}>
                 <Link className="nav-link" to={route?.path}>
-                  {route?.title}
+                  <div className="">
+                    <span style={{ fontSize: '20px' }}>
+                      {React.createElement(route?.icon)}
+                    </span>
+                    &nbsp;
+                    {route?.title}
+                  </div>
                 </Link>
               </li>
             );
