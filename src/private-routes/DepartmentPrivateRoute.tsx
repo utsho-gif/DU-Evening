@@ -1,8 +1,9 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { memo } from 'react';
 import { Outlet } from 'react-router-dom';
+import DepartmentLayout from '../modules/pages/department/ui/Department';
 // import { toast } from 'react-toastify';
-import DepartmentLayout from '../modules/pages/department/ui/department';
 
 interface IDepartmentPrivateRouteProps {
   permission: string | null;

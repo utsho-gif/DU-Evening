@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Suspense, lazy } from 'react';
 import {
   Navigate,
@@ -9,13 +8,14 @@ import {
 import { ToastContainer } from 'react-toastify';
 
 import './App.css';
-import DepartmentRoutes from './routes/department';
 import DepartmentPrivateRoutes from './private-routes/DepartmentPrivateRoute';
-// import Preloader from './components/Preloaders/Preloader';
+import DepartmentRoutes from './routes/department';
+import { RotatingLines } from 'react-loader-spinner';
+import DepartmentProgressBar from './components/DepartmentProgressbar';
 
 const DefaultLayout = lazy(() => import('./layouts/DefaultLayout'));
-const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
-const Dashboard = lazy(() => import('./modules/pages/auth/Dashboard/overview'));
+// const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
+// const Dashboard = lazy(() => import('./modules/pages/auth/Dashboard/overview'));
 const LoginPage = lazy(() => import('./modules/pages/auth/loginPage/index'));
 const SignUpPage = lazy(() => import('./modules/pages/auth/signup/index'));
 const NoticePage = lazy(() => import('./modules/pages/Notice/index'));
@@ -40,71 +40,95 @@ function App() {
         theme="colored"
       />
       <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <DefaultLayout>
-                <Navigate to="/login" />
-              </DefaultLayout>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <DefaultLayout>
-                <LoginPage />
-              </DefaultLayout>
-            }
-          />
-          <Route
-            path="/sign_up"
-            element={
-              <DefaultLayout>
-                <SignUpPage
-                  faculty={''}
-                  department={''}
-                  regno={''}
-                  session={''}
-                  program={''}
-                  password={''}
+        <Suspense
+          fallback={
+            <>
+              <DepartmentProgressBar />
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '80vh',
+                }}
+              >
+                <RotatingLines
+                  strokeColor="#2F1B72"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="96"
+                  visible
                 />
-              </DefaultLayout>
-            }
-          />
-          <Route
-            path="/notice"
-            element={
-              <DefaultLayout>
-                <NoticePage />
-              </DefaultLayout>
-            }
-          />
-          <Route
-            path="/forgot_password"
-            element={
-              <DefaultLayout>
-                <ForgotPasswordPage result={false} />
-              </DefaultLayout>
-            }
-          />
-          <Route
-            path="/result"
-            element={
-              <DefaultLayout>
-                <ForgotPasswordPage result={true} />
-              </DefaultLayout>
-            }
-          />
-          <Route
-            path="/faq"
-            element={
-              <DefaultLayout>
-                <FAQPage />
-              </DefaultLayout>
-            }
-          />
-          <Route
+              </div>
+            </>
+          }
+        >
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <DefaultLayout>
+                  <Navigate to="/login" />
+                </DefaultLayout>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <DefaultLayout>
+                  <LoginPage />
+                </DefaultLayout>
+              }
+            />
+            <Route
+              path="/sign_up"
+              element={
+                <DefaultLayout>
+                  <SignUpPage
+                    faculty={''}
+                    department={''}
+                    regno={''}
+                    session={''}
+                    program={''}
+                    password={''}
+                  />
+                </DefaultLayout>
+              }
+            />
+            <Route
+              path="/notice"
+              element={
+                <DefaultLayout>
+                  <NoticePage />
+                </DefaultLayout>
+              }
+            />
+            <Route
+              path="/forgot_password"
+              element={
+                <DefaultLayout>
+                  <ForgotPasswordPage result={false} />
+                </DefaultLayout>
+              }
+            />
+            <Route
+              path="/result"
+              element={
+                <DefaultLayout>
+                  <ForgotPasswordPage result={true} />
+                </DefaultLayout>
+              }
+            />
+            <Route
+              path="/faq"
+              element={
+                <DefaultLayout>
+                  <FAQPage />
+                </DefaultLayout>
+              }
+            />
+
+            {/* <Route
             path="/dashboard"
             element={
               <DashboardLayout>
@@ -127,27 +151,28 @@ function App() {
                 <FAQPage />
               </DashboardLayout>
             }
-          />
-          {DepartmentRoutes.map((department) => (
-            <Route
-              path="/department"
-              key={department.id}
-              element={
-                <DepartmentPrivateRoutes
-                  permission={null}
-                  loginStateData={undefined}
-                  permissions={undefined}
-                />
-              }
-            >
+          /> */}
+            {DepartmentRoutes.map((department) => (
               <Route
-                path={department.path}
-                element={<department.component />}
-              />
-              {/* <Route path="*" element={<NotFound />} /> */}
-            </Route>
-          ))}
-        </Routes>
+                path="/department"
+                key={department.id}
+                element={
+                  <DepartmentPrivateRoutes
+                    permission={null}
+                    loginStateData={undefined}
+                    permissions={undefined}
+                  />
+                }
+              >
+                <Route
+                  path={department.path}
+                  element={<department.component />}
+                />
+                {/* <Route path="*" element={<NotFound />} /> */}
+              </Route>
+            ))}
+          </Routes>
+        </Suspense>
       </Router>
     </>
   );

@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef } from 'react';
+import { Suspense, useEffect, useLayoutEffect, useRef } from 'react';
 import Sidebar from '../../../../components/Sidebar';
 import DashboardNav from '../../../../components/DashboardNav';
 import { useLocation } from 'react-router-dom';
@@ -33,6 +33,14 @@ const DepartmentLayout: React.FC<IDepartmentLayoutProps> = ({ children }) => {
     }
   }, [location]);
 
+  useLayoutEffect(() => {
+    const link = document.createElement('link');
+    link.href = '/css/adminnprogress.css';
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    document.head.appendChild(link);
+  }, []);
+
   return (
     <div className="wrapper">
       <Sidebar />
@@ -52,7 +60,7 @@ const DepartmentLayout: React.FC<IDepartmentLayoutProps> = ({ children }) => {
                   }}
                 >
                   <RotatingLines
-                    strokeColor="#EC008C"
+                    strokeColor="#2F1B72"
                     strokeWidth="5"
                     animationDuration="0.75"
                     width="96"
