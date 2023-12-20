@@ -11,7 +11,7 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <div className="sidebar-wrapper" style={{ backgroundColor: '#4E4E4E' }}>
+      <div className="sidebar-wrapper" style={{ backgroundColor: '#2F1B72' }}>
         <Nav>
           {DepartmentRoutes.map((route) => {
             return (

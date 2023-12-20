@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { IoHomeOutline } from 'react-icons/io5';
-import { PiStudentDuotone } from 'react-icons/pi';
+import { FaPeopleLine } from 'react-icons/fa6';
 import { RiUserSearchFill } from 'react-icons/ri';
 import { LiaChalkboardTeacherSolid } from 'react-icons/lia';
 
@@ -27,7 +27,7 @@ const DepartmentRoutes = [
     id: 2,
     path: 'student_list',
     title: 'Student List',
-    icon: PiStudentDuotone,
+    icon: FaPeopleLine,
     component: StudentList,
   },
   {

@@ -170,6 +170,18 @@ body {
   margin-bottom: 6px;
 }
 
+.department-exam {
+  border: 5px solid #2f1b72;
+  padding: 45px;
+}
+
+.department-text {
+  font-size: 26px;
+  color: white;
+  background: rgb(47, 27, 114);
+  padding: 25px;
+}
+
 /*!
 ============================================<------->============================================
  */
