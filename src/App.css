@@ -182,6 +182,17 @@ body {
   padding: 25px;
 }
 
+.student-search {
+  border: 5px solid #2f1b72;
+  padding: 70px 70px 30px 70px;
+}
+
+.search-button {
+  background-color: #2f1b72 !important;
+  color: white !important;
+  border: none !important;
+}
+
 /*!
 ============================================<------->============================================
  */

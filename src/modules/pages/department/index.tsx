@@ -18,7 +18,7 @@ const Home = () => {
               </Form.Select>
               <Button
                 type="submit"
-                className="button-style fw-semibold w-100 mt-4"
+                className="button-style fw-semibold w-100 mt-4 text-white"
               >
                 Submit
               </Button>
