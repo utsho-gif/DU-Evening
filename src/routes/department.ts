@@ -14,6 +14,9 @@ const StudentSearch = lazy(
   () => import('../modules/pages/department/studentSearch')
 );
 const Teachers = lazy(() => import('../modules/pages/department/teachers'));
+const DepartmentEdit = lazy(
+  () => import('../modules/pages/department/departmentEdit')
+);
 
 const DepartmentRoutes = [
   {
@@ -43,6 +46,12 @@ const DepartmentRoutes = [
     title: 'Teachers',
     icon: LiaChalkboardTeacherSolid,
     component: Teachers,
+  },
+  {
+    id: 5,
+    path: 'department_edit',
+    title: 'Department Edit',
+    component: DepartmentEdit,
   },
 ];
 

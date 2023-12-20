@@ -1,6 +1,6 @@
 import { Button, Container, Dropdown, Nav, Navbar } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
-import { LuSchool } from 'react-icons/lu';
+import { Link, useLocation } from 'react-router-dom';
+import { FaRegEdit } from 'react-icons/fa';
 import { PiPasswordDuotone } from 'react-icons/pi';
 
 import DepartmentRoutes from '../../routes/department';
@@ -69,8 +69,12 @@ const DashboardNav = () => {
                 </div>
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item className="d-flex align-items-center justify-content-around">
-                  <LuSchool />
+                <Dropdown.Item
+                  as={Link}
+                  className="d-flex align-items-center justify-content-around"
+                  to={'/department/department_edit'}
+                >
+                  <FaRegEdit />
                   &nbsp; Department Profile
                 </Dropdown.Item>
                 <Dropdown.Item className="d-flex align-items-center justify-content-around">

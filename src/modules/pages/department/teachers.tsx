@@ -11,7 +11,9 @@ const Teachers = () => {
             Add Teacher
           </h5>
           <Form.Group>
-            <Form.Label htmlFor="teacherName">Teacher Name</Form.Label>
+            <Form.Label htmlFor="teacherName">
+              Teacher Name <span className="text-warning">*</span>
+            </Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter teacher name"
@@ -19,7 +21,9 @@ const Teachers = () => {
             />
           </Form.Group>
           <Form.Group className="mt-3">
-            <Form.Label htmlFor="designation">Designation</Form.Label>
+            <Form.Label htmlFor="designation">
+              Designation <span className="text-warning">*</span>
+            </Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter designation"
@@ -27,7 +31,9 @@ const Teachers = () => {
             />
           </Form.Group>
           <Form.Group className="mt-3">
-            <Form.Label htmlFor="phoneNumber">Phone Number</Form.Label>
+            <Form.Label htmlFor="phoneNumber">
+              Phone Number <span className="text-warning">*</span>
+            </Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter phone number"
@@ -35,11 +41,15 @@ const Teachers = () => {
             />
           </Form.Group>
           <Form.Group className="mt-3">
-            <Form.Label htmlFor="email">Email</Form.Label>
+            <Form.Label htmlFor="email">
+              Email <span className="text-warning">*</span>
+            </Form.Label>
             <Form.Control type="email" placeholder="Enter email" id="email" />
           </Form.Group>
           <Form.Group className="mt-3">
-            <Form.Label htmlFor="department">Department</Form.Label>
+            <Form.Label htmlFor="department">
+              Department <span className="text-warning">*</span>
+            </Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter department"
