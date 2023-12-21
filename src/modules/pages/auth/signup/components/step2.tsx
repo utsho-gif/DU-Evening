@@ -1,3 +1,4 @@
+import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Upload } from 'antd';
 import type { UploadProps } from 'antd/es/upload/interface';
@@ -5,8 +6,6 @@ import { useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { CiCirclePlus } from 'react-icons/ci';
-// import { toast } from 'react-toastify';
-import * as yup from 'yup';
 
 import { IFirstInfo } from '..';
 import { PostData } from '../../../../../config/reactQuery';
