@@ -77,7 +77,11 @@ const DashboardNav = () => {
                   <FaRegEdit />
                   &nbsp; Department Profile
                 </Dropdown.Item>
-                <Dropdown.Item className="d-flex align-items-center justify-content-around">
+                <Dropdown.Item
+                  as={Link}
+                  to={'/department/change_password'}
+                  className="d-flex align-items-center justify-content-around"
+                >
                   <PiPasswordDuotone />
                   &nbsp; Change Password
                 </Dropdown.Item>

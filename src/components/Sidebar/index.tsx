@@ -1,8 +1,9 @@
+import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 
+import { Department } from '../../enum';
 import DepartmentRoutes from '../../routes/department';
-import React from 'react';
 
 const Sidebar = () => {
   const location = useLocation();
@@ -14,7 +15,9 @@ const Sidebar = () => {
       <div className="sidebar-wrapper" style={{ backgroundColor: '#2F1B72' }}>
         <Nav>
           {DepartmentRoutes.filter(
-            (route) => route?.title !== 'Department Edit'
+            (route) =>
+              route?.title !== Department.DEPARTMENT_EDIT &&
+              route?.title !== Department.CHANGE_PASSWORD
           ).map((route) => {
             return (
               <li key={route?.id} className={activeRoute(route.path)}>

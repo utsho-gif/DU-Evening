@@ -7,15 +7,18 @@ import { LiaChalkboardTeacherSolid } from 'react-icons/lia';
 const DepartmentHomePage = lazy(
   () => import('../modules/pages/department/index')
 );
-const StudentList = lazy(
+const StudentListPage = lazy(
   () => import('../modules/pages/department/studentList')
 );
-const StudentSearch = lazy(
+const StudentSearchPage = lazy(
   () => import('../modules/pages/department/studentSearch')
 );
-const Teachers = lazy(() => import('../modules/pages/department/teachers'));
-const DepartmentEdit = lazy(
+const TeachersPage = lazy(() => import('../modules/pages/department/teachers'));
+const DepartmentEditPage = lazy(
   () => import('../modules/pages/department/departmentEdit')
+);
+const ChangePasswordPage = lazy(
+  () => import('../modules/pages/department/changePassword')
 );
 
 const DepartmentRoutes = [
@@ -31,27 +34,33 @@ const DepartmentRoutes = [
     path: 'student_list',
     title: 'Student List',
     icon: FaPeopleLine,
-    component: StudentList,
+    component: StudentListPage,
   },
   {
     id: 3,
     path: 'student_search',
     title: 'Student Search',
     icon: RiUserSearchFill,
-    component: StudentSearch,
+    component: StudentSearchPage,
   },
   {
     id: 4,
     path: 'teachers',
     title: 'Teachers',
     icon: LiaChalkboardTeacherSolid,
-    component: Teachers,
+    component: TeachersPage,
   },
   {
     id: 5,
     path: 'department_edit',
     title: 'Department Edit',
-    component: DepartmentEdit,
+    component: DepartmentEditPage,
+  },
+  {
+    id: 6,
+    path: 'change_password',
+    title: 'Change Password',
+    component: ChangePasswordPage,
   },
 ];
 

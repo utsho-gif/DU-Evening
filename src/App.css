@@ -71,6 +71,7 @@ body {
 .button-style {
   background-color: #2f1b72 !important;
   border: none !important;
+  color: white !important;
 }
 
 .ant-upload-list {
@@ -191,6 +192,10 @@ body {
   background-color: #2f1b72 !important;
   color: white !important;
   border: none !important;
+}
+
+.department-name {
+  margin-bottom: 20px !important;
 }
 
 /*!
@@ -4101,6 +4106,7 @@ fieldset[disabled] .form-control {
   }
   .navbar-fixed-top {
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
   #bodyClick {
     height: 100%;
