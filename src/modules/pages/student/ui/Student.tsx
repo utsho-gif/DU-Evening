@@ -1,15 +1,15 @@
 import { Suspense, useEffect, useLayoutEffect, useRef } from 'react';
-import Sidebar from '../components/Sidebar';
-import DashboardNav from '../components/DashboardNav';
+import Sidebar from '../components/StudentSidebar/index';
+import DashboardNav from '../../student/components/StudentDashboardNav';
 import { useLocation } from 'react-router-dom';
 import DepartmentProgressBar from '../../../../components/DepartmentProgressbar';
 import { RotatingLines } from 'react-loader-spinner';
 
-interface IDepartmentLayoutProps {
+interface IStudentLayoutProps {
   children: React.ReactNode;
 }
 
-const DepartmentLayout: React.FC<IDepartmentLayoutProps> = ({ children }) => {
+const StudentLayout: React.FC<IStudentLayoutProps> = ({ children }) => {
   const mainPanel = useRef<HTMLDivElement | null>(null);
   const location = useLocation();
 
@@ -78,4 +78,4 @@ const DepartmentLayout: React.FC<IDepartmentLayoutProps> = ({ children }) => {
   );
 };
 
-export default DepartmentLayout;
+export default StudentLayout;

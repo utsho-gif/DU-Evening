@@ -12,6 +12,8 @@ import DepartmentPrivateRoutes from './private-routes/DepartmentPrivateRoute';
 import DepartmentRoutes from './routes/department';
 import { RotatingLines } from 'react-loader-spinner';
 import DepartmentProgressBar from './components/DepartmentProgressbar';
+import StudentRoutes from './routes/student';
+import StudentPrivateRoute from './private-routes/StudentPrivateRoute';
 
 const DefaultLayout = lazy(() => import('./layouts/DefaultLayout'));
 // const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
@@ -168,6 +170,22 @@ function App() {
                   path={department.path}
                   element={<department.component />}
                 />
+                {/* <Route path="*" element={<NotFound />} /> */}
+              </Route>
+            ))}
+            {StudentRoutes.map((student) => (
+              <Route
+                path="/student"
+                key={student.id}
+                element={
+                  <StudentPrivateRoute
+                    permission={null}
+                    loginStateData={undefined}
+                    permissions={undefined}
+                  />
+                }
+              >
+                <Route path={student.path} element={<student.component />} />
                 {/* <Route path="*" element={<NotFound />} /> */}
               </Route>
             ))}

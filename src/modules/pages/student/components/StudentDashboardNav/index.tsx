@@ -2,15 +2,16 @@ import { Button, Container, Dropdown, Nav, Navbar } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import { FaRegEdit } from 'react-icons/fa';
 import { PiPasswordDuotone } from 'react-icons/pi';
+import { IoIosLogOut } from 'react-icons/io';
 
-import DepartmentRoutes from '../../routes/department';
+import StudentRoutes from '../../../../../routes/student';
 
 const DashboardNav = () => {
   const location = useLocation();
   const getBrandText = () => {
-    for (let i = 0; i < DepartmentRoutes.length; i++) {
-      if (location.pathname.indexOf(DepartmentRoutes[i].path) !== -1) {
-        return DepartmentRoutes[i].title;
+    for (let i = 0; i < StudentRoutes.length; i++) {
+      if (location.pathname.indexOf(StudentRoutes[i].path) !== -1) {
+        return StudentRoutes[i].title;
       }
     }
     return 'Dashboard';
@@ -60,38 +61,40 @@ const DashboardNav = () => {
               <Dropdown.Toggle
                 as={Nav.Link}
                 data-toggle="dropdown"
-                id="dropdown-67443507"
+                id="basic-navbar-nav"
                 variant="default"
                 className="m-0"
               >
-                <div className="d-flex align-items-center justify-content-center">
-                  Department Name
+                <div className="d-flex align-items-center justify-content-center fs-4">
+                  Student Name
                 </div>
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item
                   as={Link}
-                  className="d-flex align-items-center justify-content-around"
-                  to={'/department/department_edit'}
+                  className="d-flex align-items-center justify-content-center"
+                  to={'/student/edit_profile'}
                 >
                   <FaRegEdit />
-                  &nbsp; Department Profile
+                  &nbsp; Student Profile
                 </Dropdown.Item>
                 <Dropdown.Item
                   as={Link}
-                  to={'/department/change_password'}
+                  to={'/student/change_password'}
                   className="d-flex align-items-center justify-content-around"
                 >
                   <PiPasswordDuotone />
                   &nbsp; Change Password
                 </Dropdown.Item>
+                <Dropdown.Item
+                  as={Link}
+                  to={''}
+                  className="d-flex align-items-center justify-content-center"
+                >
+                  <IoIosLogOut /> Log Out
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            <Nav.Item>
-              <Nav.Link className="m-0" href="#home">
-                <span className="no-icon">Log out</span>
-              </Nav.Link>
-            </Nav.Item>
           </Nav>
         </Navbar.Collapse>
       </Container>

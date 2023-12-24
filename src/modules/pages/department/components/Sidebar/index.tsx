@@ -2,8 +2,8 @@ import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 
-import { Department } from '../../enum';
-import DepartmentRoutes from '../../routes/department';
+import { Department } from '../../../../../enum';
+import DepartmentRoutes from '../../../../../routes/department';
 
 const Sidebar = () => {
   const location = useLocation();

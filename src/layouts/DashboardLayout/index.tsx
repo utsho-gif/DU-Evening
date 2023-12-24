@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import DashboardNav from '../../components/DashboardNav';
-import Sidebar from '../../components/Sidebar';
+import DashboardNav from '../../modules/pages/department/components/DashboardNav';
+import Sidebar from '../../modules/pages/department/components/Sidebar';
 
 interface IDashboardLayout {
   children: React.ReactNode;

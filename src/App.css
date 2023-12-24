@@ -198,6 +198,69 @@ body {
   margin-bottom: 20px !important;
 }
 
+.page-content {
+  background-color: #fff;
+  position: relative;
+  margin: 0;
+  padding: 8px 20px 24px;
+}
+
+.image-style {
+  position: relative;
+  min-height: 170px;
+  margin-bottom: 10px;
+}
+
+.profile-box {
+  border: 1px solid #dcebf7;
+}
+
+.profile-info {
+  display: table;
+  width: 98%;
+  width: calc(100% - 24px);
+  margin: 0 auto;
+  font-size: 14px;
+}
+
+.profile-row {
+  display: table-row;
+}
+
+.profile-box .profile-name {
+  color: #336199;
+  background-color: #edf3f4;
+  border-top: 1px solid #f7fbff;
+}
+
+.profile-name {
+  display: table-cell;
+  text-align: right;
+  padding: 6px 10px 6px 4px;
+  font-weight: 400;
+  color: #667e99;
+  background-color: transparent;
+  width: 110px;
+  vertical-align: middle;
+}
+
+.profile-value {
+  display: table-cell;
+  padding: 6px 4px 6px 6px;
+}
+
+.profile-box .profile-value {
+  border-top: 1px dotted #dcebf7;
+  padding-left: 12px;
+}
+
+.profile-header {
+  text-align: center;
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+}
+
 /*!
 ============================================<------->============================================
  */
@@ -3624,7 +3687,7 @@ fieldset[disabled] .form-control {
 }
 
 /*          Changes for small display      */
-@media (max-width: 991px) {
+/* @media (max-width: 991px) {
   .main-panel {
     width: 100%;
   }
@@ -4210,7 +4273,7 @@ fieldset[disabled] .form-control {
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch;
   }
-}
+} */
 
 @media (max-width: 768px) {
   .form-style {
