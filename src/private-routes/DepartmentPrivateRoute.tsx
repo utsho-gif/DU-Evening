@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { memo } from 'react';
 import { Outlet } from 'react-router-dom';
-import DepartmentLayout from '../modules/pages/department/ui/Department';
+import DepartmentLayout from '../layouts/Department/ui/Department';
 // import { toast } from 'react-toastify';
 
 interface IDepartmentPrivateRouteProps {

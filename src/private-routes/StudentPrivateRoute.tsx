@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { memo } from 'react';
 import { Outlet } from 'react-router-dom';
-import StudentLayout from '../modules/pages/student/ui/Student';
+import StudentLayout from '../layouts/Student/ui/Student';
 
 interface IStudentPrivateRouteProps {
   permission: string | null;

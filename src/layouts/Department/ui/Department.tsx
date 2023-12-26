@@ -1,8 +1,8 @@
 import { Suspense, useEffect, useLayoutEffect, useRef } from 'react';
-import Sidebar from '../components/Sidebar';
-import DashboardNav from '../components/DashboardNav';
+import Sidebar from '../../../modules/pages/department/components/Sidebar';
+import DashboardNav from '../../../modules/pages/department/components/DashboardNav';
 import { useLocation } from 'react-router-dom';
-import DepartmentProgressBar from '../../../../components/DepartmentProgressbar';
+import DepartmentProgressBar from '../../../components/DepartmentProgressbar';
 import { RotatingLines } from 'react-loader-spinner';
 
 interface IDepartmentLayoutProps {

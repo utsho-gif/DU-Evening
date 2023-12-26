@@ -350,7 +350,7 @@ const StudentEdit = () => {
               </Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter parents income"
+                placeholder="Enter House number, Road number / Village"
                 id="presentAddress"
                 {...register('presentAddress')}
               />
