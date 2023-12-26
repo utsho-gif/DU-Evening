@@ -1,10 +1,15 @@
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Upload } from 'antd';
+import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { CiCirclePlus } from 'react-icons/ci';
 import { GrDocumentUpdate } from 'react-icons/gr';
+import * as yup from 'yup';
 
 const StudentEdit = () => {
+  const [fileList, setFileList] = useState<any>([]);
+
   const editSchema = yup.object().shape({
     name: yup.string().required('Name is required'),
     phoneNumber: yup.string().required('Phone number is required'),
@@ -36,6 +41,7 @@ const StudentEdit = () => {
     presentDistrict: yup.string().required('District is required'),
   });
 
+  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   const {
     register,
     formState: { errors },
@@ -46,6 +52,13 @@ const StudentEdit = () => {
     console.log(data);
   };
 
+  const uploadButton = (
+    <div>
+      <CiCirclePlus style={{ fontSize: '25px' }} />
+      <div style={{ marginTop: 8 }}>Upload</div>
+    </div>
+  );
+
   return (
     <>
       <div className="d-flex align-items-center justify-content-center">
@@ -53,6 +66,16 @@ const StudentEdit = () => {
           <h5 className="p-2 rounded-2 bg-success text-center text-white w-75 m-lg-auto mb-4 department-name">
             Student Name
           </h5>
+          <div className="row col-lg-12 d-flex align-items-center justify-content-center mb-4">
+            <Upload
+              accept="image/*"
+              listType="picture-circle"
+              fileList={fileList}
+              onChange={handleChange}
+            >
+              {fileList.length >= 1 ? null : uploadButton}
+            </Upload>
+          </div>
           <div className="row">
             <Form.Group className="col-lg-6">
               <Form.Label htmlFor="name">

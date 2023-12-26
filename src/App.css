@@ -261,6 +261,13 @@ body {
   font-weight: bold;
 }
 
+.anticon-delete {
+  color: red !important;
+}
+
+.ant-tooltip {
+  display: none !important;
+}
 /*!
 ============================================<------->============================================
  */

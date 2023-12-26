@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Upload } from 'antd';
-import type { UploadProps } from 'antd/es/upload/interface';
 import { useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -17,7 +16,6 @@ interface ISecondInfo {
 }
 
 const SecondStep: React.FC<ISecondInfo> = ({ firstInfo, setFirstInfo }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [fileList, setFileList] = useState<any>([]);
   const SignUpSecondSchema = yup.object().shape({
     password: yup
@@ -45,7 +43,6 @@ const SecondStep: React.FC<ISecondInfo> = ({ firstInfo, setFirstInfo }) => {
     navigateOnSuccess: '/login',
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = async (data: any) => {
     setFirstInfo({
       ...firstInfo,
@@ -63,8 +60,7 @@ const SecondStep: React.FC<ISecondInfo> = ({ firstInfo, setFirstInfo }) => {
     await userData(formData);
   };
 
-  const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
-    setFileList(newFileList);
+  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
 
   const uploadButton = (
     <div>
