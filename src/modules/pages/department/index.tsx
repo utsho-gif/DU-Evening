@@ -2,6 +2,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import PageTitle from '../../../components/PageTitle';
 
 const Home = () => {
   const examSchema = yup.object().shape({
@@ -19,7 +20,8 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <>
+      <PageTitle title={'Home'} />
       <div className="row gap-2">
         <div className="col-lg-5 department-exam">
           <div>
@@ -54,7 +56,7 @@ const Home = () => {
           <div className="text-center">Notice</div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

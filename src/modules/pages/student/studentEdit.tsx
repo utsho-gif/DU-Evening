@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { CiCirclePlus } from 'react-icons/ci';
 import { GrDocumentUpdate } from 'react-icons/gr';
 import * as yup from 'yup';
+import PageTitle from '../../../components/PageTitle';
 
 const StudentEdit = () => {
   const [fileList, setFileList] = useState<any>([]);
@@ -61,6 +62,7 @@ const StudentEdit = () => {
 
   return (
     <>
+      <PageTitle title={'Student Profile Edit'} />
       <div className="d-flex align-items-center justify-content-center">
         <Form className="w-75 student-search" onSubmit={handleSubmit(onSubmit)}>
           <h5 className="p-2 rounded-2 bg-success text-center text-white w-75 m-lg-auto mb-4 department-name">

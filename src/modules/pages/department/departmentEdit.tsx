@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { GrDocumentUpdate } from 'react-icons/gr';
+import PageTitle from '../../../components/PageTitle';
 
 const DepartmentEdit = () => {
   const editSchema = yup.object().shape({
@@ -26,6 +27,7 @@ const DepartmentEdit = () => {
 
   return (
     <>
+      <PageTitle title={'Department Edit'} />
       <div className="d-flex align-items-center justify-content-center">
         <Form className="w-75 student-search" onSubmit={handleSubmit(onSubmit)}>
           <h5 className="p-2 rounded-2 bg-success text-center text-white w-75 m-lg-auto mb-4 department-name">

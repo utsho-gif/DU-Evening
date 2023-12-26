@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { LiaEyeSolid } from 'react-icons/lia';
 
 import { DataTable } from '../../../components/CustomDatatable';
+import PageTitle from '../../../components/PageTitle';
 
 const StudentList = () => {
   const [query, setQuery] = useState({});
@@ -22,7 +23,8 @@ const StudentList = () => {
   let tableIndex = 1;
 
   return (
-    <div>
+    <>
+      <PageTitle title={'Student List'} />
       <DataTable
         title="Student List"
         columns={[
@@ -52,7 +54,7 @@ const StudentList = () => {
         query={{}}
         setQuery={(e) => setQuery({ ...query, ...e })}
       />
-    </div>
+    </>
   );
 };
 

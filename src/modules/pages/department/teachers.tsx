@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { IoIosPersonAdd } from 'react-icons/io';
+import PageTitle from '../../../components/PageTitle';
 
 const Teachers = () => {
   const teacherSchema = yup.object().shape({
@@ -27,7 +28,8 @@ const Teachers = () => {
   };
 
   return (
-    <div>
+    <>
+      <PageTitle title={'Teachers'} />
       <h3 className="text-center mb-3">Department Name</h3>
       <div className="d-flex align-items-center justify-content-center">
         <Form className="w-75 student-search" onSubmit={handleSubmit(onSubmit)}>
@@ -124,7 +126,7 @@ const Teachers = () => {
           </div>
         </Form>
       </div>
-    </div>
+    </>
   );
 };
 
