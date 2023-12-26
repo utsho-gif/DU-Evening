@@ -6,12 +6,34 @@ import { GrDocumentUpdate } from 'react-icons/gr';
 
 const StudentEdit = () => {
   const editSchema = yup.object().shape({
-    departmentName: yup.string().required('Department name is required'),
-    contactNumber: yup.string().required('Contact number is required'),
-    departmentEmail: yup
+    name: yup.string().required('Name is required'),
+    phoneNumber: yup.string().required('Phone number is required'),
+    fatherName: yup.string().required('Father name is required'),
+    motherName: yup.string().required('Mother name is required'),
+    nationality: yup.string().required('Nationality is required'),
+    dob: yup.string().required('Date of birth is required'),
+    gender: yup.string().required('Gender is required'),
+    religion: yup.string().required('Religion is required'),
+    cast: yup.string(),
+    income: yup.string(),
+    email: yup
       .string()
       .email('Please enter a valid email address')
       .required('Email is required'),
+    permanentAddress: yup
+      .string()
+      .required('House number, Road number / Village is required'),
+    postOffice: yup.string().required('Post office is required'),
+    policeStation: yup.string().required('Police station is required'),
+    upazila: yup.string().required('Upazila is required'),
+    district: yup.string().required('District is required'),
+    presentAddress: yup
+      .string()
+      .required('House number, Road number / Village is required'),
+    presentPostOffice: yup.string().required('Post office is required'),
+    presentPoliceStation: yup.string().required('Police station is required'),
+    presentUpazila: yup.string().required('Upazila is required'),
+    presentDistrict: yup.string().required('District is required'),
   });
 
   const {
@@ -40,11 +62,11 @@ const StudentEdit = () => {
                 type="text"
                 placeholder="Enter name"
                 id="name"
-                {...register('departmentName')}
+                {...register('name')}
               />
               <Form.Label>
-                {errors.departmentName && (
-                  <p className="text-danger">{errors.departmentName.message}</p>
+                {errors.name && (
+                  <p className="text-danger">{errors.name.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
@@ -56,11 +78,11 @@ const StudentEdit = () => {
                 type="text"
                 placeholder="Enter phone number"
                 id="phoneNumber"
-                {...register('departmentName')}
+                {...register('phoneNumber')}
               />
               <Form.Label>
-                {errors.departmentName && (
-                  <p className="text-danger">{errors.departmentName.message}</p>
+                {errors.phoneNumber && (
+                  <p className="text-danger">{errors.phoneNumber.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
@@ -74,11 +96,11 @@ const StudentEdit = () => {
                 type="text"
                 placeholder="Enter father name"
                 id="fatherName"
-                {...register('contactNumber')}
+                {...register('fatherName')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.fatherName && (
+                  <p className="text-danger">{errors.fatherName.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
@@ -90,11 +112,11 @@ const StudentEdit = () => {
                 type="text"
                 placeholder="Enter mother name"
                 id="motherName"
-                {...register('contactNumber')}
+                {...register('motherName')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.motherName && (
+                  <p className="text-danger">{errors.motherName.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
@@ -108,11 +130,11 @@ const StudentEdit = () => {
                 type="text"
                 placeholder="Enter nationality"
                 id="nationality"
-                {...register('contactNumber')}
+                {...register('nationality')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.nationality && (
+                  <p className="text-danger">{errors.nationality.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
@@ -124,31 +146,31 @@ const StudentEdit = () => {
                 type="date"
                 placeholder="Enter date of birth"
                 id="dob"
-                {...register('contactNumber')}
+                {...register('dob')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.dob && (
+                  <p className="text-danger">{errors.dob.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
           </div>
           <div className="row">
             <Form.Group>
-              <Form.Label htmlFor="dob">
+              <Form.Label htmlFor="gender">
                 Gender <span className="text-warning">*</span>
               </Form.Label>
               <Form.Select
                 aria-label="Default select example"
-                {...register('contactNumber')}
+                {...register('gender')}
               >
                 <option value="">Select Gender</option>
                 <option value="1">Male</option>
                 <option value="2">Female</option>
               </Form.Select>
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.gender && (
+                  <p className="text-danger">{errors.gender.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
@@ -162,11 +184,11 @@ const StudentEdit = () => {
                 type="text"
                 placeholder="Enter religion"
                 id="religion"
-                {...register('contactNumber')}
+                {...register('religion')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.religion && (
+                  <p className="text-danger">{errors.religion.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
@@ -176,7 +198,7 @@ const StudentEdit = () => {
                 type="text"
                 placeholder="Enter cast"
                 id="cast"
-                {...register('contactNumber')}
+                {...register('cast')}
               />
             </Form.Group>
           </div>
@@ -187,7 +209,7 @@ const StudentEdit = () => {
                 type="text"
                 placeholder="Enter parents income"
                 id="income"
-                {...register('contactNumber')}
+                {...register('income')}
               />
             </Form.Group>
             <Form.Group className="col-lg-6">
@@ -196,7 +218,7 @@ const StudentEdit = () => {
                 type="email"
                 placeholder="Enter email"
                 id="email"
-                {...register('contactNumber')}
+                {...register('email')}
               />
             </Form.Group>
           </div>
@@ -205,19 +227,21 @@ const StudentEdit = () => {
           </div>
           <div className="row">
             <Form.Group>
-              <Form.Label htmlFor="income">
+              <Form.Label htmlFor="permanentAddress">
                 House number, Road number / Village.{' '}
                 <span className="text-danger">*</span>
               </Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter parents income"
-                id="income"
-                {...register('contactNumber')}
+                placeholder="Enter House number, Road number / Village"
+                id="permanentAddress"
+                {...register('permanentAddress')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.permanentAddress && (
+                  <p className="text-danger">
+                    {errors.permanentAddress.message}
+                  </p>
                 )}
               </Form.Label>
             </Form.Group>
@@ -231,11 +255,11 @@ const StudentEdit = () => {
                 type="text"
                 placeholder="Enter post Office"
                 id="postOffice"
-                {...register('contactNumber')}
+                {...register('postOffice')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.postOffice && (
+                  <p className="text-danger">{errors.postOffice.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
@@ -247,11 +271,11 @@ const StudentEdit = () => {
                 type="text"
                 placeholder="Enter police station"
                 id="policeStation"
-                {...register('contactNumber')}
+                {...register('policeStation')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.policeStation && (
+                  <p className="text-danger">{errors.policeStation.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
@@ -259,17 +283,17 @@ const StudentEdit = () => {
           <div className="row">
             <Form.Group className="col-lg-6">
               <Form.Label htmlFor="upazila">
-                Upa Zilla <span className="text-warning">*</span>
+                Upazila <span className="text-warning">*</span>
               </Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter upa zilla"
                 id="upazila"
-                {...register('contactNumber')}
+                {...register('upazila')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.upazila && (
+                  <p className="text-danger">{errors.upazila.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
@@ -281,11 +305,11 @@ const StudentEdit = () => {
                 type="text"
                 placeholder="Enter district"
                 id="district"
-                {...register('contactNumber')}
+                {...register('district')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.district && (
+                  <p className="text-danger">{errors.district.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
@@ -295,87 +319,93 @@ const StudentEdit = () => {
           </div>
           <div className="row">
             <Form.Group>
-              <Form.Label htmlFor="income">
+              <Form.Label htmlFor="presentAddress">
                 House number, Road number / Village.{' '}
                 <span className="text-danger">*</span>
               </Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter parents income"
-                id="income"
-                {...register('contactNumber')}
+                id="presentAddress"
+                {...register('presentAddress')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.presentAddress && (
+                  <p className="text-danger">{errors.presentAddress.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
           </div>
           <div className="row">
             <Form.Group className="col-lg-6">
-              <Form.Label htmlFor="postOffice">
+              <Form.Label htmlFor="presentPostOffice">
                 Post Office <span className="text-warning">*</span>
               </Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter post Office"
-                id="postOffice"
-                {...register('contactNumber')}
+                placeholder="Enter post office"
+                id="presentPostOffice"
+                {...register('presentPostOffice')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.presentPostOffice && (
+                  <p className="text-danger">
+                    {errors.presentPostOffice.message}
+                  </p>
                 )}
               </Form.Label>
             </Form.Group>
             <Form.Group className="col-lg-6">
-              <Form.Label htmlFor="policeStation">
+              <Form.Label htmlFor="presentPoliceStation">
                 Police Station <span className="text-warning">*</span>
               </Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter police station"
-                id="policeStation"
-                {...register('contactNumber')}
+                id="presentPoliceStation"
+                {...register('presentPoliceStation')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.presentPoliceStation && (
+                  <p className="text-danger">
+                    {errors.presentPoliceStation.message}
+                  </p>
                 )}
               </Form.Label>
             </Form.Group>
           </div>
           <div className="row">
             <Form.Group className="col-lg-6">
-              <Form.Label htmlFor="upazila">
-                Upa Zilla <span className="text-warning">*</span>
+              <Form.Label htmlFor="presentUpazila">
+                Upazila <span className="text-warning">*</span>
               </Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter upa zilla"
-                id="upazila"
-                {...register('contactNumber')}
+                placeholder="Enter upazila"
+                id="presentUpazila"
+                {...register('presentUpazila')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.presentUpazila && (
+                  <p className="text-danger">{errors.presentUpazila.message}</p>
                 )}
               </Form.Label>
             </Form.Group>
             <Form.Group className="col-lg-6">
-              <Form.Label htmlFor="district">
+              <Form.Label htmlFor="presentDistrict">
                 District <span className="text-warning">*</span>
               </Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Enter district"
-                id="district"
-                {...register('contactNumber')}
+                id="presentDistrict"
+                {...register('presentDistrict')}
               />
               <Form.Label>
-                {errors.contactNumber && (
-                  <p className="text-danger">{errors.contactNumber.message}</p>
+                {errors.presentDistrict && (
+                  <p className="text-danger">
+                    {errors.presentDistrict.message}
+                  </p>
                 )}
               </Form.Label>
             </Form.Group>
