@@ -14,6 +14,8 @@ import { RotatingLines } from 'react-loader-spinner';
 import DepartmentProgressBar from './components/DepartmentProgressbar';
 import StudentRoutes from './routes/student';
 import StudentPrivateRoute from './private-routes/StudentPrivateRoute';
+import NotFound from './modules/pages/404';
+import AdminRoutes from './routes/admin';
 
 const DefaultLayout = lazy(() => import('./layouts/DefaultLayout'));
 // const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
@@ -129,31 +131,6 @@ function App() {
                 </DefaultLayout>
               }
             />
-
-            {/* <Route
-            path="/dashboard"
-            element={
-              <DashboardLayout>
-                <Dashboard />
-              </DashboardLayout>
-            }
-          />
-          <Route
-            path="/dashboard/overview"
-            element={
-              <DashboardLayout>
-                <Dashboard />
-              </DashboardLayout>
-            }
-          />
-          <Route
-            path="/dashboard/faq"
-            element={
-              <DashboardLayout>
-                <FAQPage />
-              </DashboardLayout>
-            }
-          /> */}
             {DepartmentRoutes.map((department) => (
               <Route
                 path="/department"
@@ -170,7 +147,7 @@ function App() {
                   path={department.path}
                   element={<department.component />}
                 />
-                {/* <Route path="*" element={<NotFound />} /> */}
+                <Route path="*" element={<NotFound />} />
               </Route>
             ))}
             {StudentRoutes.map((student) => (
@@ -186,9 +163,26 @@ function App() {
                 }
               >
                 <Route path={student.path} element={<student.component />} />
-                {/* <Route path="*" element={<NotFound />} /> */}
+                <Route path="*" element={<NotFound />} />
               </Route>
             ))}
+            {AdminRoutes.map((admin) => (
+              <Route
+                path="/admin"
+                key={admin.id}
+                element={
+                  <StudentPrivateRoute
+                    permission={null}
+                    loginStateData={undefined}
+                    permissions={undefined}
+                  />
+                }
+              >
+                <Route path={admin.path} element={<admin.component />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+            ))}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </Router>
