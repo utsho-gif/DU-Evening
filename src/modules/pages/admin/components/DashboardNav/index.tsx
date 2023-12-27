@@ -1,16 +1,14 @@
-import { Button, Container, Dropdown, Nav, Navbar } from 'react-bootstrap';
-import { Link, useLocation } from 'react-router-dom';
-import { FaRegEdit } from 'react-icons/fa';
-import { PiPasswordDuotone } from 'react-icons/pi';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
 
-import DepartmentRoutes from '../../../../../routes/department';
+import AdminRoutes from '../../../../../routes/admin';
 
 const DashboardNav = () => {
   const location = useLocation();
   const getBrandText = () => {
-    for (let i = 0; i < DepartmentRoutes.length; i++) {
-      if (location.pathname.indexOf(DepartmentRoutes[i].path) !== -1) {
-        return DepartmentRoutes[i].title;
+    for (let i = 0; i < AdminRoutes.length; i++) {
+      if (location.pathname.indexOf(AdminRoutes[i].path) !== -1) {
+        return AdminRoutes[i].title;
       }
     }
     return 'Dashboard';
@@ -56,7 +54,7 @@ const DashboardNav = () => {
           className="d-flex align-items-center justify-content-end"
         >
           <Nav className="ml-auto" navbar>
-            <Dropdown as={Nav.Item}>
+            {/* <Dropdown as={Nav.Item}>
               <Dropdown.Toggle
                 as={Nav.Link}
                 data-toggle="dropdown"
@@ -86,7 +84,7 @@ const DashboardNav = () => {
                   &nbsp; Change Password
                 </Dropdown.Item>
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
             <Nav.Item>
               <Nav.Link className="m-0" href="#home">
                 <span className="no-icon">Log out</span>

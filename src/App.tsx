@@ -1,3 +1,4 @@
+import { RotatingLines } from 'react-loader-spinner';
 import { Suspense, lazy } from 'react';
 import {
   Navigate,
@@ -8,14 +9,16 @@ import {
 import { ToastContainer } from 'react-toastify';
 
 import './App.css';
-import DepartmentPrivateRoutes from './private-routes/DepartmentPrivateRoute';
-import DepartmentRoutes from './routes/department';
-import { RotatingLines } from 'react-loader-spinner';
 import DepartmentProgressBar from './components/DepartmentProgressbar';
-import StudentRoutes from './routes/student';
-import StudentPrivateRoute from './private-routes/StudentPrivateRoute';
 import NotFound from './modules/pages/404';
+
+import DepartmentRoutes from './routes/department';
+import StudentRoutes from './routes/student';
 import AdminRoutes from './routes/admin';
+
+import DepartmentPrivateRoutes from './private-routes/DepartmentPrivateRoute';
+import StudentPrivateRoute from './private-routes/StudentPrivateRoute';
+import AdminPrivateRoute from './private-routes/AdminPrivateRoute';
 
 const DefaultLayout = lazy(() => import('./layouts/DefaultLayout'));
 // const DashboardLayout = lazy(() => import('./layouts/DashboardLayout'));
@@ -171,7 +174,7 @@ function App() {
                 path="/admin"
                 key={admin.id}
                 element={
-                  <StudentPrivateRoute
+                  <AdminPrivateRoute
                     permission={null}
                     loginStateData={undefined}
                     permissions={undefined}
