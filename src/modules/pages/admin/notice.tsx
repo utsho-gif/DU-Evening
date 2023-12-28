@@ -4,7 +4,7 @@ import { LiaEyeSolid } from 'react-icons/lia';
 import { DataTable } from '../../../components/CustomDatatable';
 import PageTitle from '../../../components/PageTitle';
 
-const StudentList = () => {
+const Notice = () => {
   const [query, setQuery] = useState({});
 
   const dummyData = [
@@ -24,28 +24,32 @@ const StudentList = () => {
 
   return (
     <>
-      <PageTitle title={'Student List'} />
+      <PageTitle title={'Programs'} />
       <DataTable
-        title="Student List"
+        title="Program List"
         columns={[
           { title: 'SL No.', dataIndex: 'slNo' },
-          { title: 'Session', dataIndex: 'session' },
-          { title: 'Program', dataIndex: 'program' },
-          { title: 'Department Name', dataIndex: 'depName' },
+          { title: 'Faculty', dataIndex: 'department' },
+          { title: 'Department', dataIndex: 'program' },
           { title: 'Action', dataIndex: 'action' },
         ]}
         data={
           dummyData?.length
             ? dummyData.map((data) => ({
                 slNo: tableIndex++,
-                session: data?.session,
+                department: data?.session,
                 program: data?.program,
-                depName: data?.depName,
+                student: data?.depName,
                 action: (
-                  <button className="btn text-white bg-success d-flex align-items-center">
-                    <LiaEyeSolid />
-                    &nbsp; Student
-                  </button>
+                  <div
+                    className="d-flex align-items-center"
+                    style={{ gap: '5px' }}
+                  >
+                    <button className="btn text-white bg-success d-flex align-items-center border-0">
+                      <LiaEyeSolid />
+                      &nbsp; View
+                    </button>
+                  </div>
                 ),
               }))
             : []
@@ -58,4 +62,4 @@ const StudentList = () => {
   );
 };
 
-export default StudentList;
+export default Notice;

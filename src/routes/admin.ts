@@ -10,19 +10,19 @@ import { PiPencilLineDuotone } from 'react-icons/pi';
 import { RiUserSearchFill } from 'react-icons/ri';
 
 const AdminOverviewPage = lazy(() => import('../modules/pages/admin/index'));
-const StudentListPage = lazy(
-  () => import('../modules/pages/department/studentList')
-);
+const ExamListPage = lazy(() => import('../modules/pages/admin/examList'));
 const StudentSearchPage = lazy(
   () => import('../modules/pages/admin/studentSearch')
 );
-const TeachersPage = lazy(() => import('../modules/pages/department/teachers'));
+const SupportMessagePage = lazy(
+  () => import('../modules/pages/admin/supportMessage')
+);
 const DepartmentEditPage = lazy(
-  () => import('../modules/pages/department/departmentEdit')
+  () => import('../modules/pages/admin/allPrograms')
 );
-const ChangePasswordPage = lazy(
-  () => import('../modules/pages/department/changePassword')
-);
+const NoticePage = lazy(() => import('../modules/pages/admin/notice'));
+const TeacherPage = lazy(() => import('../modules/pages/admin/teacher'));
+const DepartmentPage = lazy(() => import('../modules/pages/admin/department'));
 
 interface IAdmin {
   id: number;
@@ -52,14 +52,14 @@ const AdminRoutes: IAdmin[] = [
     path: 'exam',
     title: 'Exam',
     icon: PiPencilLineDuotone,
-    component: StudentListPage,
+    component: ExamListPage,
   },
   {
     id: 4,
     path: 'support',
     title: 'Support Message',
     icon: LuMessagesSquare,
-    component: TeachersPage,
+    component: SupportMessagePage,
   },
   {
     id: 5,
@@ -73,21 +73,21 @@ const AdminRoutes: IAdmin[] = [
     path: 'department',
     title: 'Department',
     icon: FaUserGraduate,
-    component: ChangePasswordPage,
+    component: DepartmentPage,
   },
   {
     id: 7,
     path: 'notice',
     title: 'Notice',
     icon: GoBell,
-    component: ChangePasswordPage,
+    component: NoticePage,
   },
   {
     id: 8,
     path: 'teachers',
     title: 'Teachers',
     icon: LiaChalkboardTeacherSolid,
-    component: ChangePasswordPage,
+    component: TeacherPage,
   },
 ];
 
