@@ -1,3 +1,4 @@
+import { IconType } from 'antd/es/notification/interface';
 import { lazy } from 'react';
 import { IoHomeOutline } from 'react-icons/io5';
 
@@ -7,7 +8,15 @@ const ChangePasswordPage = lazy(
   () => import('../modules/pages/student/changePassword')
 );
 
-const StudentRoutes = [
+interface IStudent {
+  id: number;
+  path: string;
+  title: string;
+  icon?: IconType;
+  component: React.LazyExoticComponent<React.ComponentType<any>>;
+}
+
+const StudentRoutes: IStudent[] = [
   {
     id: 1,
     path: 'home',

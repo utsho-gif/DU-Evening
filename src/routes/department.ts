@@ -3,6 +3,7 @@ import { IoHomeOutline } from 'react-icons/io5';
 import { FaPeopleLine } from 'react-icons/fa6';
 import { RiUserSearchFill } from 'react-icons/ri';
 import { LiaChalkboardTeacherSolid } from 'react-icons/lia';
+import { IconType } from 'antd/es/notification/interface';
 
 const DepartmentHomePage = lazy(
   () => import('../modules/pages/department/index')
@@ -21,7 +22,15 @@ const ChangePasswordPage = lazy(
   () => import('../modules/pages/department/changePassword')
 );
 
-const DepartmentRoutes = [
+interface IDepartment {
+  id: number;
+  path: string;
+  title: string;
+  icon?: IconType;
+  component: React.LazyExoticComponent<React.ComponentType<any>>;
+}
+
+const DepartmentRoutes: IDepartment[] = [
   {
     id: 1,
     path: 'home',

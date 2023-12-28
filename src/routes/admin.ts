@@ -14,7 +14,7 @@ const StudentListPage = lazy(
   () => import('../modules/pages/department/studentList')
 );
 const StudentSearchPage = lazy(
-  () => import('../modules/pages/department/studentSearch')
+  () => import('../modules/pages/admin/studentSearch')
 );
 const TeachersPage = lazy(() => import('../modules/pages/department/teachers'));
 const DepartmentEditPage = lazy(
@@ -83,7 +83,7 @@ const AdminRoutes: IAdmin[] = [
     component: ChangePasswordPage,
   },
   {
-    id: 7,
+    id: 8,
     path: 'teachers',
     title: 'Teachers',
     icon: LiaChalkboardTeacherSolid,
