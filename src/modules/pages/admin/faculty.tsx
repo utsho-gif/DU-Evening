@@ -1,10 +1,22 @@
 import { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { FaPlusCircle } from 'react-icons/fa';
 
 import { DataTable } from '../../../components/CustomDatatable';
 import PageTitle from '../../../components/PageTitle';
+import FacultyModal from './components/facultyModal';
 
-const Teacher = () => {
+const Faculty = () => {
   const [query, setQuery] = useState({});
+  const [facultyShowModal, setFacultyShowModal] = useState(false);
+
+  const handleShowModal = () => {
+    setFacultyShowModal(true);
+  };
+
+  const handleCloseFacultyModal = () => {
+    setFacultyShowModal(false);
+  };
 
   const dummyData = [
     {
@@ -23,7 +35,20 @@ const Teacher = () => {
 
   return (
     <>
+      <FacultyModal
+        facultyShowModal={facultyShowModal}
+        facultyModalClose={handleCloseFacultyModal}
+      />
       <PageTitle title={'Teachers'} />
+      <div className="d-flex align-items-center justify-content-end mb-3">
+        <Button
+          onClick={() => handleShowModal()}
+          variant="success"
+          className="d-flex align-items-center"
+        >
+          Add Faculty&nbsp; <FaPlusCircle />
+        </Button>
+      </div>
       <DataTable
         title="Message List"
         columns={[
@@ -52,4 +77,4 @@ const Teacher = () => {
   );
 };
 
-export default Teacher;
+export default Faculty;

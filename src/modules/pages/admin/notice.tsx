@@ -24,7 +24,7 @@ const Notice = () => {
 
   return (
     <>
-      <PageTitle title={'Programs'} />
+      <PageTitle title={'Notice'} />
       <DataTable
         title="Program List"
         columns={[

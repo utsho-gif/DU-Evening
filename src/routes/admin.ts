@@ -8,6 +8,7 @@ import { LiaChalkboardTeacherSolid } from 'react-icons/lia';
 import { LuMessagesSquare } from 'react-icons/lu';
 import { PiPencilLineDuotone } from 'react-icons/pi';
 import { RiUserSearchFill } from 'react-icons/ri';
+import { FaSchoolFlag } from 'react-icons/fa6';
 
 const AdminOverviewPage = lazy(() => import('../modules/pages/admin/index'));
 const ExamListPage = lazy(() => import('../modules/pages/admin/examList'));
@@ -23,6 +24,7 @@ const DepartmentEditPage = lazy(
 const NoticePage = lazy(() => import('../modules/pages/admin/notice'));
 const TeacherPage = lazy(() => import('../modules/pages/admin/teacher'));
 const DepartmentPage = lazy(() => import('../modules/pages/admin/department'));
+const FacultyPage = lazy(() => import('../modules/pages/admin/faculty'));
 
 interface IAdmin {
   id: number;
@@ -63,10 +65,10 @@ const AdminRoutes: IAdmin[] = [
   },
   {
     id: 5,
-    path: 'programs',
-    title: 'All Programs',
-    icon: GiGraduateCap,
-    component: DepartmentEditPage,
+    path: 'faculty',
+    title: 'Faculty',
+    icon: FaSchoolFlag,
+    component: FacultyPage,
   },
   {
     id: 6,
@@ -77,13 +79,21 @@ const AdminRoutes: IAdmin[] = [
   },
   {
     id: 7,
+    path: 'programs',
+    title: 'All Programs',
+    icon: GiGraduateCap,
+    component: DepartmentEditPage,
+  },
+
+  {
+    id: 8,
     path: 'notice',
     title: 'Notice',
     icon: GoBell,
     component: NoticePage,
   },
   {
-    id: 8,
+    id: 9,
     path: 'teachers',
     title: 'Teachers',
     icon: LiaChalkboardTeacherSolid,

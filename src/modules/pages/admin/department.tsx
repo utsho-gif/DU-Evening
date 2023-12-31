@@ -25,7 +25,7 @@ const AllProgram = () => {
 
   return (
     <>
-      <PageTitle title={'Programs'} />
+      <PageTitle title={'Department'} />
       <DataTable
         title="Program List"
         columns={[
