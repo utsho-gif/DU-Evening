@@ -2,23 +2,27 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useEffect } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
+import { UseMutateFunction } from 'react-query';
 import * as yup from 'yup';
 
-import { PostData } from '../../../../config/reactQuery';
 import Loading from '../../../../components/Loading';
-import { Type } from '../../../../enum';
-import { FacultyTypes } from '../types';
 
 interface IFacultyModal {
   showModal: boolean;
   facultyModalClose: () => void;
   setShowModal: (showModal: boolean) => void;
+  facultyData: UseMutateFunction<any, any, any, unknown>;
+  facultyIsLoading: boolean;
+  facultySuccess: boolean;
 }
 
 const FacultyModal: React.FC<IFacultyModal> = ({
   showModal,
   facultyModalClose,
   setShowModal,
+  facultyData,
+  facultyIsLoading,
+  facultySuccess,
 }) => {
   const facultySchema = yup.object().shape({
     faculty: yup.string().required('Faculty is required'),
@@ -30,17 +34,6 @@ const FacultyModal: React.FC<IFacultyModal> = ({
     handleSubmit,
     reset,
   } = useForm({ resolver: yupResolver(facultySchema) });
-
-  const {
-    mutate: facultyData,
-    isLoading: facultyIsLoading,
-    isSuccess: facultySuccess,
-  } = PostData({
-    url: '/faculty',
-    key: FacultyTypes.FACULTY_CREATE,
-    successType: Type.SUCCESS,
-    errorType: Type.ERROR,
-  });
 
   const onSubmit = async (data: any) => {
     const formData = new FormData();

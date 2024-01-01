@@ -1,14 +1,47 @@
-import { useState } from 'react';
+import moment from 'moment';
+import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { FaPlusCircle } from 'react-icons/fa';
+import { MdDelete } from 'react-icons/md';
 
 import { DataTable } from '../../../components/CustomDatatable';
 import PageTitle from '../../../components/PageTitle';
+import { DeleteData, FetchData, PostData } from '../../../config/reactQuery';
+import { Type } from '../../../enum';
 import FacultyModal from './components/facultyModal';
+import { FacultyTypes } from './types';
+import DeleteModal from '../../../components/DeleteModal';
 
 const Faculty = () => {
   const [query, setQuery] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [deleteShow, setDeleteShow] = useState(false);
+  const [id, setId] = useState();
+
+  const facultyState = FetchData({
+    url: '/faculty',
+    key: FacultyTypes.FACULTY_GET,
+  });
+
+  const {
+    mutate: facultyData,
+    isLoading: facultyIsLoading,
+    isSuccess: facultySuccess,
+  } = PostData({
+    url: '/faculty',
+    key: FacultyTypes.FACULTY_CREATE,
+    successType: Type.SUCCESS,
+    errorType: Type.ERROR,
+  });
+
+  const {
+    mutate: deleteCategory,
+    isLoading: isDeleteCategoryLoading,
+    isSuccess: isDeleteSuccess,
+  } = DeleteData({
+    url: '/faculty',
+    key: FacultyTypes.FACULTY_DELETE,
+  });
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -18,20 +51,23 @@ const Faculty = () => {
     setShowModal(false);
   };
 
-  const dummyData = [
-    {
-      session: '2019-2020',
-      program: 'MBA',
-      depName: 'Physics',
-    },
-    {
-      session: '2020-2021',
-      program: 'MBA',
-      depName: 'Biology',
-    },
-  ];
+  const deleteHandleClose = () => {
+    setDeleteShow(false);
+  };
+
+  const deleteHandleShow = (id: any) => {
+    setId(id);
+    setDeleteShow(true);
+  };
 
   let tableIndex = 1;
+
+  useEffect(() => {
+    if (facultySuccess || isDeleteSuccess) {
+      facultyState.refetch();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [facultySuccess, isDeleteSuccess]);
 
   return (
     <>
@@ -39,8 +75,19 @@ const Faculty = () => {
         showModal={showModal}
         facultyModalClose={handleCloseFacultyModal}
         setShowModal={setShowModal}
+        facultyData={facultyData}
+        facultyIsLoading={facultyIsLoading}
+        facultySuccess={facultySuccess}
       />
-      <PageTitle title={'Teachers'} />
+
+      <DeleteModal
+        handleClose={deleteHandleClose}
+        show={deleteShow}
+        onDelete={deleteCategory}
+        isLoading={isDeleteCategoryLoading}
+        selected={id}
+      />
+      <PageTitle title={'Faculty'} />
       <div className="d-flex align-items-center justify-content-end mb-3">
         <Button
           onClick={() => handleShowModal()}
@@ -50,22 +97,29 @@ const Faculty = () => {
         </Button>
       </div>
       <DataTable
-        title="Message List"
+        title="Faculty List"
         columns={[
           { title: 'SL No.', dataIndex: 'slNo' },
-          { title: 'Teacher Name', dataIndex: 'regNo' },
-          { title: 'Phone', dataIndex: 'message' },
-          { title: 'Email', dataIndex: 'date' },
-          { title: 'Designation', dataIndex: 'date' },
-          { title: 'Department', dataIndex: 'date' },
+          { title: 'Faculty Name', dataIndex: 'faculty' },
+          { title: 'Created', dataIndex: 'created' },
+          { title: 'Action', dataIndex: 'delete' },
         ]}
         data={
-          dummyData?.length
-            ? dummyData.map((data) => ({
+          facultyState?.data?.faculties?.length
+            ? facultyState?.data?.faculties?.map((faculty: any) => ({
                 slNo: tableIndex++,
-                regNo: data?.session,
-                message: data?.program,
-                date: data?.depName,
+                faculty: faculty?.faculty_name,
+                created: moment(faculty?.created_at).format(
+                  'MMMM Do YYYY, h:mm:ss a'
+                ),
+                delete: (
+                  <Button
+                    variant="danger"
+                    onClick={() => deleteHandleShow(faculty.id)}
+                  >
+                    <MdDelete />
+                  </Button>
+                ),
               }))
             : []
         }

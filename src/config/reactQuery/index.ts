@@ -120,3 +120,48 @@ IMutation) => {
     }
   );
 };
+
+export const DeleteData = ({
+  url,
+  key,
+  optionalKey,
+  successType,
+  errorType,
+  navigateOnSuccess,
+  navigateOnError,
+}: IMutation) => {
+  const nav = useNavigate();
+  const queryClient = useQueryClient();
+  return useMutation(
+    async ({ id }: any) => {
+      // const response = await await AxiosAuthInstance.delete(`${url}/${id}`);
+      const response = await await AxiosWithoutAuthInstance.delete(
+        `${url}/${id}`
+      );
+      return response.data;
+    },
+    {
+      onSuccess: (data: any) => {
+        queryClient.invalidateQueries([key, optionalKey || '']);
+        if (successType) {
+          toast.success(data?.message);
+        }
+        if (navigateOnSuccess) {
+          nav(navigateOnSuccess);
+        }
+      },
+      onError: (error: any) => {
+        if (errorType) {
+          toast.error(
+            error?.response?.data?.error ||
+              error?.response?.data?.message ||
+              'Something went wrong'
+          );
+        }
+        if (navigateOnError) {
+          nav(navigateOnError);
+        }
+      },
+    }
+  );
+};
