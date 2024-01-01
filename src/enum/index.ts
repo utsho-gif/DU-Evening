@@ -7,3 +7,8 @@ export enum Student {
   EDIT_PROFILE = 'Edit Profile',
   CHANGE_PASSWORD = 'Change Password',
 }
+
+export enum Type {
+  SUCCESS = 'Success',
+  ERROR = 'Error',
+}

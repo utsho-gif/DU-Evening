@@ -31,7 +31,6 @@ const FirstStep: React.FC<IFirstStep> = ({
     handleSubmit,
   } = useForm({ resolver: yupResolver(SignUpFirstSchema) });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
   const onSubmit = (data: any) => {
     setFirstInfo({
       ...firstInfo,

@@ -8,14 +8,14 @@ import FacultyModal from './components/facultyModal';
 
 const Faculty = () => {
   const [query, setQuery] = useState({});
-  const [facultyShowModal, setFacultyShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => {
-    setFacultyShowModal(true);
+    setShowModal(true);
   };
 
   const handleCloseFacultyModal = () => {
-    setFacultyShowModal(false);
+    setShowModal(false);
   };
 
   const dummyData = [
@@ -36,15 +36,15 @@ const Faculty = () => {
   return (
     <>
       <FacultyModal
-        facultyShowModal={facultyShowModal}
+        showModal={showModal}
         facultyModalClose={handleCloseFacultyModal}
+        setShowModal={setShowModal}
       />
       <PageTitle title={'Teachers'} />
       <div className="d-flex align-items-center justify-content-end mb-3">
         <Button
           onClick={() => handleShowModal()}
-          variant="success"
-          className="d-flex align-items-center"
+          className="d-flex align-items-center button-style"
         >
           Add Faculty&nbsp; <FaPlusCircle />
         </Button>
