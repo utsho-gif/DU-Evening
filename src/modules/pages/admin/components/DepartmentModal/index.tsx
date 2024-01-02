@@ -60,7 +60,7 @@ const FacultyModal: React.FC<IFacultyModal> = ({
   return (
     <Modal show={showModal} onHide={facultyModalClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Add Faculty</Modal.Title>
+        <Modal.Title>Add Department</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -76,7 +76,7 @@ const FacultyModal: React.FC<IFacultyModal> = ({
                       {faculty?.faculty_name}
                     </option>
                   ))
-                : ''}
+                : []}
             </Form.Select>
             <Form.Label>
               {errors.faculty && (

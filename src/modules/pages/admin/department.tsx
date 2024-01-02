@@ -1,23 +1,33 @@
-import { useState } from 'react';
-import { LiaEyeSolid } from 'react-icons/lia';
+import { useEffect, useState } from 'react';
 import { LuClipboardEdit } from 'react-icons/lu';
 import { FaPlusCircle } from 'react-icons/fa';
 import { Button } from 'react-bootstrap';
+import { MdDelete } from 'react-icons/md';
+import moment from 'moment';
+import { Tooltip } from 'antd';
 
 import { DataTable } from '../../../components/CustomDatatable';
 import PageTitle from '../../../components/PageTitle';
 import DepartmentModal from './components/DepartmentModal';
 import { Type } from '../../../enum';
-import { PostData } from '../../../config/reactQuery';
+import { DeleteData, FetchData, PostData } from '../../../config/reactQuery';
 import { DepartmentTypes } from './types';
+import DeleteModal from '../../../components/DeleteModal';
 
 const AllProgram = () => {
   const [query, setQuery] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [deleteShow, setDeleteShow] = useState(false);
+  const [id, setId] = useState<number>();
 
   const handleShowModal = () => {
     setShowModal(true);
   };
+
+  const departmentState = FetchData({
+    url: '/department',
+    key: DepartmentTypes.DEPARTMENT_GET,
+  });
 
   const {
     mutate: departmentData,
@@ -30,24 +40,36 @@ const AllProgram = () => {
     errorType: Type.ERROR,
   });
 
+  const {
+    mutate: deleteDepartment,
+    isLoading: isDeleteCategoryLoading,
+    isSuccess: isDeleteSuccess,
+  } = DeleteData({
+    url: '/department',
+    key: DepartmentTypes.DEPARTMENT_DELETE,
+  });
+
   const handleCloseFacultyModal = () => {
     setShowModal(false);
   };
 
-  const dummyData = [
-    {
-      session: '2019-2020',
-      program: 'MBA',
-      depName: 'Physics',
-    },
-    {
-      session: '2020-2021',
-      program: 'MBA',
-      depName: 'Biology',
-    },
-  ];
+  const deleteHandleClose = () => {
+    setDeleteShow(false);
+  };
+
+  const deleteHandleShow = (id: number) => {
+    setId(id);
+    setDeleteShow(true);
+  };
 
   let tableIndex = 1;
+
+  useEffect(() => {
+    if (departmentSuccess || isDeleteSuccess) {
+      departmentState.refetch();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [departmentSuccess, isDeleteSuccess]);
 
   return (
     <>
@@ -58,6 +80,14 @@ const AllProgram = () => {
         departmentData={departmentData}
         departmentLoading={departmentLoading}
         departmentSuccess={departmentSuccess}
+      />
+
+      <DeleteModal
+        handleClose={deleteHandleClose}
+        show={deleteShow}
+        onDelete={deleteDepartment}
+        isLoading={isDeleteCategoryLoading}
+        selected={id}
       />
       <PageTitle title={'Department'} />
       <div className="d-flex align-items-center justify-content-end mb-3">
@@ -72,28 +102,34 @@ const AllProgram = () => {
         title="Program List"
         columns={[
           { title: 'SL No.', dataIndex: 'slNo' },
-          { title: 'Faculty', dataIndex: 'department' },
-          { title: 'Department', dataIndex: 'program' },
-          { title: 'Program & Password', dataIndex: 'student' },
-          { title: 'Contact', dataIndex: 'student' },
+          { title: 'Faculty', dataIndex: 'faculty' },
+          { title: 'Department', dataIndex: 'department' },
+          { title: 'Created At', dataIndex: 'created' },
           { title: 'Action', dataIndex: 'action' },
         ]}
         data={
-          dummyData?.length
-            ? dummyData.map((data) => ({
+          departmentState?.data?.departments?.length
+            ? departmentState?.data?.departments?.map((department: any) => ({
                 slNo: tableIndex++,
-                department: data?.session,
-                program: data?.program,
-                student: data?.depName,
+                faculty: department?.faculty?.faculty_name,
+                department: department?.department_name,
+                created: moment(department?.created_at).format(
+                  'MMMM Do YYYY, h:mm:ss a'
+                ),
                 action: (
                   <div
                     className="d-flex align-items-center"
                     style={{ gap: '5px' }}
                   >
-                    <button className="btn text-white bg-success d-flex align-items-center border-0">
-                      <LiaEyeSolid />
-                      &nbsp; View
-                    </button>
+                    <Tooltip title="Delete" color={'red'}>
+                      <Button
+                        title="Delete"
+                        variant="danger"
+                        onClick={() => deleteHandleShow(department.id)}
+                      >
+                        <MdDelete />
+                      </Button>
+                    </Tooltip>
                     <button className="btn text-white bg-info d-flex align-items-center border-0">
                       <LuClipboardEdit />
                       &nbsp; Edit

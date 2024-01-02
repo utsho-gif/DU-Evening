@@ -5,5 +5,7 @@ export const FacultyTypes = {
 };
 
 export const DepartmentTypes = {
+  DEPARTMENT_GET: 'departmentGet',
   DEPARTMENT_CREATE: 'departmentCreate',
+  DEPARTMENT_DELETE: 'departmentDelete',
 };

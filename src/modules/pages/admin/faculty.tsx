@@ -36,7 +36,7 @@ const Faculty = () => {
   });
 
   const {
-    mutate: deleteCategory,
+    mutate: deleteFaculty,
     isLoading: isDeleteCategoryLoading,
     isSuccess: isDeleteSuccess,
   } = DeleteData({
@@ -67,6 +67,7 @@ const Faculty = () => {
     if (facultySuccess || isDeleteSuccess) {
       facultyState.refetch();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [facultySuccess, isDeleteSuccess]);
 
   return (
@@ -83,7 +84,7 @@ const Faculty = () => {
       <DeleteModal
         handleClose={deleteHandleClose}
         show={deleteShow}
-        onDelete={deleteCategory}
+        onDelete={deleteFaculty}
         isLoading={isDeleteCategoryLoading}
         selected={id}
       />
@@ -102,7 +103,7 @@ const Faculty = () => {
           { title: 'SL No.', dataIndex: 'slNo' },
           { title: 'Faculty Name', dataIndex: 'faculty' },
           { title: 'Created Time', dataIndex: 'created' },
-          { title: 'Action', dataIndex: 'delete' },
+          { title: 'Action', dataIndex: 'action' },
         ]}
         data={
           facultyState?.data?.faculties?.length
@@ -112,7 +113,7 @@ const Faculty = () => {
                 created: moment(faculty?.created_at).format(
                   'MMMM Do YYYY, h:mm:ss a'
                 ),
-                delete: (
+                action: (
                   <Tooltip title="Delete" color={'red'}>
                     <Button
                       title="Delete"
