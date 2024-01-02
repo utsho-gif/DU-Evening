@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { UseMutateFunction } from 'react-query';
 import * as yup from 'yup';
 
-import Loading from '../../../../components/Loading';
+import Loading from '../../../../../components/Loading';
 
 interface IFacultyModal {
   showModal: boolean;

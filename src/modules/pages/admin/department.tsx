@@ -1,12 +1,38 @@
 import { useState } from 'react';
 import { LiaEyeSolid } from 'react-icons/lia';
 import { LuClipboardEdit } from 'react-icons/lu';
+import { FaPlusCircle } from 'react-icons/fa';
+import { Button } from 'react-bootstrap';
 
 import { DataTable } from '../../../components/CustomDatatable';
 import PageTitle from '../../../components/PageTitle';
+import DepartmentModal from './components/DepartmentModal';
+import { Type } from '../../../enum';
+import { PostData } from '../../../config/reactQuery';
+import { DepartmentTypes } from './types';
 
 const AllProgram = () => {
   const [query, setQuery] = useState({});
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const {
+    mutate: departmentData,
+    isLoading: departmentLoading,
+    isSuccess: departmentSuccess,
+  } = PostData({
+    url: '/department',
+    key: DepartmentTypes.DEPARTMENT_CREATE,
+    successType: Type.SUCCESS,
+    errorType: Type.ERROR,
+  });
+
+  const handleCloseFacultyModal = () => {
+    setShowModal(false);
+  };
 
   const dummyData = [
     {
@@ -25,7 +51,23 @@ const AllProgram = () => {
 
   return (
     <>
+      <DepartmentModal
+        showModal={showModal}
+        facultyModalClose={handleCloseFacultyModal}
+        setShowModal={setShowModal}
+        departmentData={departmentData}
+        departmentLoading={departmentLoading}
+        departmentSuccess={departmentSuccess}
+      />
       <PageTitle title={'Department'} />
+      <div className="d-flex align-items-center justify-content-end mb-3">
+        <Button
+          onClick={() => handleShowModal()}
+          className="d-flex align-items-center button-style"
+        >
+          Add Department&nbsp; <FaPlusCircle />
+        </Button>
+      </div>
       <DataTable
         title="Program List"
         columns={[

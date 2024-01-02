@@ -3,15 +3,15 @@ import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { FaPlusCircle } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
+import { Tooltip } from 'antd';
 
 import { DataTable } from '../../../components/CustomDatatable';
 import PageTitle from '../../../components/PageTitle';
 import { DeleteData, FetchData, PostData } from '../../../config/reactQuery';
 import { Type } from '../../../enum';
-import FacultyModal from './components/facultyModal';
+import FacultyModal from './components/FacultyModal/facultyModal';
 import { FacultyTypes } from './types';
 import DeleteModal from '../../../components/DeleteModal';
-import { Tooltip } from 'antd';
 
 const Faculty = () => {
   const [query, setQuery] = useState({});
