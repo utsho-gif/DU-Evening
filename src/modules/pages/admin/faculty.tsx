@@ -11,12 +11,13 @@ import { Type } from '../../../enum';
 import FacultyModal from './components/facultyModal';
 import { FacultyTypes } from './types';
 import DeleteModal from '../../../components/DeleteModal';
+import { Tooltip } from 'antd';
 
 const Faculty = () => {
   const [query, setQuery] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [deleteShow, setDeleteShow] = useState(false);
-  const [id, setId] = useState();
+  const [id, setId] = useState<number>();
 
   const facultyState = FetchData({
     url: '/faculty',
@@ -55,7 +56,7 @@ const Faculty = () => {
     setDeleteShow(false);
   };
 
-  const deleteHandleShow = (id: any) => {
+  const deleteHandleShow = (id: number) => {
     setId(id);
     setDeleteShow(true);
   };
@@ -66,7 +67,6 @@ const Faculty = () => {
     if (facultySuccess || isDeleteSuccess) {
       facultyState.refetch();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [facultySuccess, isDeleteSuccess]);
 
   return (
@@ -101,7 +101,7 @@ const Faculty = () => {
         columns={[
           { title: 'SL No.', dataIndex: 'slNo' },
           { title: 'Faculty Name', dataIndex: 'faculty' },
-          { title: 'Created', dataIndex: 'created' },
+          { title: 'Created Time', dataIndex: 'created' },
           { title: 'Action', dataIndex: 'delete' },
         ]}
         data={
@@ -113,12 +113,15 @@ const Faculty = () => {
                   'MMMM Do YYYY, h:mm:ss a'
                 ),
                 delete: (
-                  <Button
-                    variant="danger"
-                    onClick={() => deleteHandleShow(faculty.id)}
-                  >
-                    <MdDelete />
-                  </Button>
+                  <Tooltip title="Delete" color={'red'}>
+                    <Button
+                      title="Delete"
+                      variant="danger"
+                      onClick={() => deleteHandleShow(faculty.id)}
+                    >
+                      <MdDelete />
+                    </Button>
+                  </Tooltip>
                 ),
               }))
             : []

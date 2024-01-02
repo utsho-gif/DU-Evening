@@ -31,8 +31,9 @@ const DeleteModal: FC<IDeleteModalProps> = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
+
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal show={show} onHide={handleClose}>
       <Modal.Body className="d-flex flex-column align-items-center justify-content-center">
         <DeleteForeverIcon
           color="error"
@@ -57,7 +58,10 @@ const DeleteModal: FC<IDeleteModalProps> = ({
           Once deleted, you will not be able to recover this data!
         </div>
       </Modal.Body>
-      <Modal.Footer className="d-flex justify-content-center">
+      <Modal.Footer
+        className="d-flex justify-content-center align-items-center"
+        style={{ gap: '5px' }}
+      >
         <Button
           className="footer-secondary-btn"
           variant="secondary"
@@ -66,8 +70,7 @@ const DeleteModal: FC<IDeleteModalProps> = ({
           Cancel
         </Button>
         <Button
-          className="footer-primary-btn"
-          variant="primary"
+          className="button-style"
           onClick={handleChange}
           disabled={isLoading}
         >
