@@ -11,5 +11,7 @@ export const DepartmentTypes = {
 };
 
 export const ProgramTypes = {
+  PROGRAM_GET: 'programGet',
   PROGRAM_CREATE: 'programCreate',
+  PROGRAM_DELETE: 'programDelete',
 };

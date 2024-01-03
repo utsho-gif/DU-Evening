@@ -55,17 +55,17 @@ const ProgramModal: React.FC<IProgramModal> = ({
 
   const onSubmit = async (data: any) => {
     const formData = new FormData();
-    formData.append('Program_name', data?.Program);
-    formData.append('faculty_id', data?.faculty);
+    formData.append('department_id', data?.department);
+    formData.append('program_name', data?.program);
     await programData(formData);
   };
 
   useEffect(() => {
-    if (programSuccess || showModal === false) {
+    if (programSuccess) {
       setShowModal(false);
       reset();
     }
-  }, [programSuccess, setShowModal, reset, showModal]);
+  }, [programSuccess, setShowModal, reset]);
 
   return (
     <Modal show={showModal} onHide={programModalClose}>

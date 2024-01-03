@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { LiaEyeSolid } from 'react-icons/lia';
+import { useEffect, useState } from 'react';
+// import { LiaEyeSolid } from 'react-icons/lia';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { FaPlusCircle } from 'react-icons/fa';
 
@@ -7,13 +7,21 @@ import { DataTable } from '../../../components/CustomDatatable';
 import PageTitle from '../../../components/PageTitle';
 import { Button } from 'react-bootstrap';
 import ProgramModal from './components/ProgramModal';
-import { PostData } from '../../../config/reactQuery';
+import { DeleteData, FetchData, PostData } from '../../../config/reactQuery';
 import { ProgramTypes } from './types';
 import { Type } from '../../../enum';
+import DeleteModal from '../../../components/DeleteModal';
 
 const AllProgram = () => {
   const [query, setQuery] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [deleteShow, setDeleteShow] = useState(false);
+  const [id, setId] = useState<number>();
+
+  const programState = FetchData({
+    url: '/program',
+    key: ProgramTypes.PROGRAM_GET,
+  });
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -21,6 +29,15 @@ const AllProgram = () => {
 
   const handleCloseProgramModal = () => {
     setShowModal(false);
+  };
+
+  const deleteHandleClose = () => {
+    setDeleteShow(false);
+  };
+
+  const deleteHandleShow = (id: number) => {
+    setId(id);
+    setDeleteShow(true);
   };
 
   const {
@@ -34,18 +51,21 @@ const AllProgram = () => {
     errorType: Type.ERROR,
   });
 
-  const dummyData = [
-    {
-      session: '2019-2020',
-      program: 'MBA',
-      depName: 'Physics',
-    },
-    {
-      session: '2020-2021',
-      program: 'MBA',
-      depName: 'Biology',
-    },
-  ];
+  const {
+    mutate: deleteProgram,
+    isLoading: isDeleteProgramLoading,
+    isSuccess: isDeleteSuccess,
+  } = DeleteData({
+    url: '/program',
+    key: ProgramTypes.PROGRAM_DELETE,
+  });
+
+  useEffect(() => {
+    if (programSuccess || isDeleteSuccess) {
+      programState.refetch();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [programSuccess, isDeleteSuccess]);
 
   let tableIndex = 1;
 
@@ -58,6 +78,13 @@ const AllProgram = () => {
         programData={programData}
         programLoading={programLoading}
         programSuccess={programSuccess}
+      />
+      <DeleteModal
+        handleClose={deleteHandleClose}
+        show={deleteShow}
+        onDelete={deleteProgram}
+        isLoading={isDeleteProgramLoading}
+        selected={id}
       />
       <PageTitle title={'Programs'} />
       <div className="d-flex align-items-center justify-content-end mb-3">
@@ -75,26 +102,28 @@ const AllProgram = () => {
           { title: 'Faculty', dataIndex: 'faculty' },
           { title: 'Department', dataIndex: 'department' },
           { title: 'Program Name', dataIndex: 'program' },
-          { title: 'Total Students', dataIndex: 'student' },
           { title: 'Action', dataIndex: 'action' },
         ]}
         data={
-          dummyData?.length
-            ? dummyData.map((data) => ({
+          programState?.data?.programs?.length
+            ? programState?.data?.programs?.map((program: any) => ({
                 slNo: tableIndex++,
-                department: data?.session,
-                program: data?.program,
-                student: data?.depName,
+                faculty: program?.department?.faculty?.faculty_name,
+                department: program?.department?.department_name,
+                program: program?.program_name,
                 action: (
                   <div
                     className="d-flex align-items-center"
                     style={{ gap: '5px' }}
                   >
-                    <button className="btn text-white bg-success d-flex align-items-center border-0">
+                    {/* <button className="btn text-white bg-success d-flex align-items-center border-0">
                       <LiaEyeSolid />
                       &nbsp; View
-                    </button>
-                    <button className="btn text-white bg-danger d-flex align-items-center border-0">
+                    </button> */}
+                    <button
+                      className="btn text-white bg-danger d-flex align-items-center border-0"
+                      onClick={() => deleteHandleShow(program.id)}
+                    >
                       <RiDeleteBin6Line />
                       &nbsp; Delete
                     </button>
