@@ -11,6 +11,7 @@ import { DeleteData, FetchData, PostData } from '../../../config/reactQuery';
 import { ProgramTypes } from './types';
 import { Type } from '../../../enum';
 import DeleteModal from '../../../components/DeleteModal';
+import moment from 'moment';
 
 const AllProgram = () => {
   const [query, setQuery] = useState({});
@@ -102,6 +103,7 @@ const AllProgram = () => {
           { title: 'Faculty', dataIndex: 'faculty' },
           { title: 'Department', dataIndex: 'department' },
           { title: 'Program Name', dataIndex: 'program' },
+          { title: 'Created At', dataIndex: 'create' },
           { title: 'Action', dataIndex: 'action' },
         ]}
         data={
@@ -111,6 +113,9 @@ const AllProgram = () => {
                 faculty: program?.department?.faculty?.faculty_name,
                 department: program?.department?.department_name,
                 program: program?.program_name,
+                create: moment(program?.created_at).format(
+                  'MMMM Do YYYY, h:mm:ss a'
+                ),
                 action: (
                   <div
                     className="d-flex align-items-center"

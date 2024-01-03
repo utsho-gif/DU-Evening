@@ -14,8 +14,8 @@ import DeleteModal from '../../../components/DeleteModal';
 
 const Faculty = () => {
   const [query, setQuery] = useState({});
-  const [showModal, setShowModal] = useState(false);
-  const [deleteShow, setDeleteShow] = useState(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [deleteShow, setDeleteShow] = useState<boolean>(false);
   const [id, setId] = useState<number>();
 
   const facultyState = FetchData({
