@@ -9,3 +9,7 @@ export const DepartmentTypes = {
   DEPARTMENT_CREATE: 'departmentCreate',
   DEPARTMENT_DELETE: 'departmentDelete',
 };
+
+export const ProgramTypes = {
+  PROGRAM_CREATE: 'programCreate',
+};

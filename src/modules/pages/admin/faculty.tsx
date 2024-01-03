@@ -2,8 +2,7 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { FaPlusCircle } from 'react-icons/fa';
-import { MdDelete } from 'react-icons/md';
-import { Tooltip } from 'antd';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 
 import { DataTable } from '../../../components/CustomDatatable';
 import PageTitle from '../../../components/PageTitle';
@@ -114,15 +113,22 @@ const Faculty = () => {
                   'MMMM Do YYYY, h:mm:ss a'
                 ),
                 action: (
-                  <Tooltip title="Delete" color={'red'}>
-                    <Button
-                      title="Delete"
-                      variant="danger"
-                      onClick={() => deleteHandleShow(faculty.id)}
-                    >
-                      <MdDelete />
-                    </Button>
-                  </Tooltip>
+                  // <Tooltip title="Delete" color={'red'}>
+                  //   <Button
+                  //     title="Delete"
+                  //     variant="danger"
+                  //     onClick={() => deleteHandleShow(faculty.id)}
+                  //   >
+                  //     <MdDelete />
+                  //   </Button>
+                  // </Tooltip>
+                  <button
+                    className="btn text-white bg-danger d-flex align-items-center border-0"
+                    onClick={() => deleteHandleShow(faculty.id)}
+                  >
+                    <RiDeleteBin6Line />
+                    &nbsp; Delete
+                  </button>
                 ),
               }))
             : []

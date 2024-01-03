@@ -80,7 +80,7 @@ const AdminRoutes: IAdmin[] = [
   {
     id: 7,
     path: 'programs',
-    title: 'All Programs',
+    title: 'Programs',
     icon: GiGraduateCap,
     component: DepartmentEditPage,
   },

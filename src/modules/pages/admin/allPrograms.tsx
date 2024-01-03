@@ -1,12 +1,38 @@
 import { useState } from 'react';
 import { LiaEyeSolid } from 'react-icons/lia';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { FaPlusCircle } from 'react-icons/fa';
 
 import { DataTable } from '../../../components/CustomDatatable';
 import PageTitle from '../../../components/PageTitle';
+import { Button } from 'react-bootstrap';
+import ProgramModal from './components/ProgramModal';
+import { PostData } from '../../../config/reactQuery';
+import { ProgramTypes } from './types';
+import { Type } from '../../../enum';
 
 const AllProgram = () => {
   const [query, setQuery] = useState({});
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseProgramModal = () => {
+    setShowModal(false);
+  };
+
+  const {
+    mutate: programData,
+    isLoading: programLoading,
+    isSuccess: programSuccess,
+  } = PostData({
+    url: '/program',
+    key: ProgramTypes.PROGRAM_CREATE,
+    successType: Type.SUCCESS,
+    errorType: Type.ERROR,
+  });
 
   const dummyData = [
     {
@@ -25,11 +51,28 @@ const AllProgram = () => {
 
   return (
     <>
+      <ProgramModal
+        showModal={showModal}
+        programModalClose={handleCloseProgramModal}
+        setShowModal={setShowModal}
+        programData={programData}
+        programLoading={programLoading}
+        programSuccess={programSuccess}
+      />
       <PageTitle title={'Programs'} />
+      <div className="d-flex align-items-center justify-content-end mb-3">
+        <Button
+          onClick={() => handleShowModal()}
+          className="d-flex align-items-center button-style"
+        >
+          Add Program&nbsp; <FaPlusCircle />
+        </Button>
+      </div>
       <DataTable
         title="Program List"
         columns={[
           { title: 'SL No.', dataIndex: 'slNo' },
+          { title: 'Faculty', dataIndex: 'faculty' },
           { title: 'Department', dataIndex: 'department' },
           { title: 'Program Name', dataIndex: 'program' },
           { title: 'Total Students', dataIndex: 'student' },

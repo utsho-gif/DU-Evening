@@ -7,24 +7,24 @@ import * as yup from 'yup';
 
 import Loading from '../../../../../components/Loading';
 import { FetchData } from '../../../../../config/reactQuery';
-import { FacultyTypes } from '../../types';
+import { DepartmentTypes, FacultyTypes } from '../../types';
 
-interface IDepartmentModal {
+interface IProgramModal {
   showModal: boolean;
-  departmentModalClose: () => void;
+  programModalClose: () => void;
   setShowModal: (showModal: boolean) => void;
-  departmentData: UseMutateFunction<any, any, any, unknown>;
-  departmentLoading: boolean;
-  departmentSuccess: boolean;
+  programData: UseMutateFunction<any, any, any, unknown>;
+  programLoading: boolean;
+  programSuccess: boolean;
 }
 
-const DepartmentModal: React.FC<IDepartmentModal> = ({
+const ProgramModal: React.FC<IProgramModal> = ({
   showModal,
-  departmentModalClose,
+  programModalClose,
   setShowModal,
-  departmentData,
-  departmentLoading,
-  departmentSuccess,
+  programData,
+  programLoading,
+  programSuccess,
 }) => {
   const facultyState = FetchData({
     url: '/faculty',
@@ -34,6 +34,7 @@ const DepartmentModal: React.FC<IDepartmentModal> = ({
   const facultySchema = yup.object().shape({
     faculty: yup.string().required('Faculty is required'),
     department: yup.string().required('Department is required'),
+    program: yup.string().required('Program is required'),
   });
 
   const {
@@ -41,26 +42,35 @@ const DepartmentModal: React.FC<IDepartmentModal> = ({
     formState: { errors },
     handleSubmit,
     reset,
+    watch,
   } = useForm({ resolver: yupResolver(facultySchema) });
+
+  const departmentState = FetchData({
+    url: `/department/${Number(watch('faculty'))}`,
+    key: DepartmentTypes.DEPARTMENT_GET,
+    optionalKey: Number(watch('faculty')),
+    dependency: true,
+    dependencyValue: Number(watch('faculty')),
+  });
 
   const onSubmit = async (data: any) => {
     const formData = new FormData();
-    formData.append('department_name', data?.department);
+    formData.append('Program_name', data?.Program);
     formData.append('faculty_id', data?.faculty);
-    await departmentData(formData);
+    await programData(formData);
   };
 
   useEffect(() => {
-    if (departmentSuccess) {
+    if (programSuccess || showModal === false) {
       setShowModal(false);
       reset();
     }
-  }, [departmentSuccess, setShowModal, reset]);
+  }, [programSuccess, setShowModal, reset, showModal]);
 
   return (
-    <Modal show={showModal} onHide={departmentModalClose}>
+    <Modal show={showModal} onHide={programModalClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Add Department</Modal.Title>
+        <Modal.Title>Add Program</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -84,24 +94,44 @@ const DepartmentModal: React.FC<IDepartmentModal> = ({
               )}
             </Form.Label>
           </Form.Group>
-          <Form.Group className="mb-2 col-lg-12" controlId="department">
+          <Form.Group className="col-lg-12" controlId="department">
             <Form.Label>
-              Department Name <span className="text-danger">*</span>
+              Department <span className="text-danger">*</span>
             </Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Enter department name"
-              {...register('department')}
-            />
+            <Form.Select {...register('department')}>
+              <option value="">Select Department</option>
+              {departmentState?.data?.departments?.length
+                ? departmentState?.data?.departments?.map((department: any) => (
+                    <option key={department?.id} value={department?.id}>
+                      {department?.department_name}
+                    </option>
+                  ))
+                : []}
+            </Form.Select>
             <Form.Label>
               {errors.department && (
                 <p className="text-danger">{errors.department.message}</p>
               )}
             </Form.Label>
           </Form.Group>
+          <Form.Group className="mb-2 col-lg-12" controlId="Program">
+            <Form.Label>
+              Program Name <span className="text-danger">*</span>
+            </Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter Program name"
+              {...register('program')}
+            />
+            <Form.Label>
+              {errors.program && (
+                <p className="text-danger">{errors.program.message}</p>
+              )}
+            </Form.Label>
+          </Form.Group>
           <div className="d-flex align-items-center justify-content-end">
             <Button type="submit" className="button-style fw-semibold">
-              {departmentLoading ? <Loading text="Loading..." /> : 'Submit'}
+              {programLoading ? <Loading text="Loading..." /> : 'Submit'}
             </Button>
           </div>
         </Form>
@@ -110,4 +140,4 @@ const DepartmentModal: React.FC<IDepartmentModal> = ({
   );
 };
 
-export default DepartmentModal;
+export default ProgramModal;

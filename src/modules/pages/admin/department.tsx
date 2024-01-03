@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { LuClipboardEdit } from 'react-icons/lu';
+// import { LuClipboardEdit } from 'react-icons/lu';
 import { FaPlusCircle } from 'react-icons/fa';
 import { Button } from 'react-bootstrap';
-import { MdDelete } from 'react-icons/md';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 import moment from 'moment';
-import { Tooltip } from 'antd';
 
 import { DataTable } from '../../../components/CustomDatatable';
 import PageTitle from '../../../components/PageTitle';
@@ -49,7 +48,7 @@ const AllProgram = () => {
     key: DepartmentTypes.DEPARTMENT_DELETE,
   });
 
-  const handleCloseFacultyModal = () => {
+  const handleCloseDepartmentModal = () => {
     setShowModal(false);
   };
 
@@ -75,7 +74,7 @@ const AllProgram = () => {
     <>
       <DepartmentModal
         showModal={showModal}
-        facultyModalClose={handleCloseFacultyModal}
+        departmentModalClose={handleCloseDepartmentModal}
         setShowModal={setShowModal}
         departmentData={departmentData}
         departmentLoading={departmentLoading}
@@ -121,19 +120,17 @@ const AllProgram = () => {
                     className="d-flex align-items-center"
                     style={{ gap: '5px' }}
                   >
-                    <Tooltip title="Delete" color={'red'}>
-                      <Button
-                        title="Delete"
-                        variant="danger"
-                        onClick={() => deleteHandleShow(department.id)}
-                      >
-                        <MdDelete />
-                      </Button>
-                    </Tooltip>
-                    <button className="btn text-white bg-info d-flex align-items-center border-0">
+                    <button
+                      className="btn text-white bg-danger d-flex align-items-center border-0"
+                      onClick={() => deleteHandleShow(department.id)}
+                    >
+                      <RiDeleteBin6Line />
+                      &nbsp; Delete
+                    </button>
+                    {/* <button className="btn text-white bg-info d-flex align-items-center border-0">
                       <LuClipboardEdit />
                       &nbsp; Edit
-                    </button>
+                    </button> */}
                   </div>
                 ),
               }))
